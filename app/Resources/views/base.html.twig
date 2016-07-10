@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets
+        'public/styles/css/bootstrap.css' %}
+        <link href="{{ asset_url }}" rel="stylesheet">
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+    {% block head_javascripts %}
+
+    {% endblock %}
+
+</head>
+<body>
+{% block top_body_javascripts %}
+
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block bottom_body_javascripts %}
+    {% javascripts
+    'public/js/jquery-2.2.4.min.js'
+    'public/styles/js/bootstrap.min.js'
+
+    filter='?uglifyjs2' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+
+</body>
 </html>

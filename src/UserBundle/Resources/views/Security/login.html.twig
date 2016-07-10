@@ -8,22 +8,23 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('authorization') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password"/>
+    <div class="wrapper">
+        <form class="form-signin" action="{{ path('authorization') }}" method="post">
+            <h2 class="form-signin-heading">Please login</h2>
+            <input type="text" class="form-control" name="_username" placeholder="Email Address" required=""
+                   autofocus=""/>
+            <input type="password" class="form-control" name="_password" placeholder="Password" required=""/>
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+            </label>
 
-        {#
-            If you want to control the URL the user
-            is redirected to on success (more details below)
-            <input type="hidden" name="_target_path" value="/account" />
-        #}
-        <input type="hidden" name="token_validate"
-               value="{{ csrf_token('d41d8cd98f00b204e9800998ecf8427e') }}"
-        >
-        <button type="submit">login</button>
-    </form>
+            <input type="hidden" name="token_validate"
+                   value="{{ csrf_token('d41d8cd98f00b204e9800998ecf8427e') }}"
+            >
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">login</button>
+        </form>
+    </div>
 
 {% endblock %}
