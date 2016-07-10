@@ -4,7 +4,7 @@
 {# ... you will probably extends your base template, like base.html.twig #}
 {% block body %}
 
-    <div class="blur"></div>
+    <div class="blur" xmlns="http://www.w3.org/1999/html"></div>
 
 
 
@@ -21,7 +21,7 @@
 
         <div class="wrapper">
             {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <script type="text/javascript">toastr["error"]("Login Failed !", "{{ error.messageKey }}");</script>
             {% endif %}
             <form class="form-signin" action="{{ path('authorization') }}" method="post">
                 <h2 class="form-signin-heading">Please login</h2>

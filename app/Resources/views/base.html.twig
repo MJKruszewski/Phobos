@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
         {% stylesheets
         'public/styles/css/bootstrap.css'
-        'public/styles/css/toastr.min.css'
-        %}
+        'public/styles/css/toastr.min.css' %}
         <link href="{{ asset_url }}" rel="stylesheet">
         {% endstylesheets %}
     {% endblock %}
@@ -20,12 +19,6 @@
 </head>
 <body>
 {% block top_body_javascripts %}
-
-{% endblock %}
-
-{% block body %}{% endblock %}
-
-{% block bottom_body_javascripts %}
     {% javascripts
     'public/js/jquery-2.2.4.min.js'
     'public/styles/js/bootstrap.min.js'
@@ -34,6 +27,16 @@
     filter='?uglifyjs2' %}
     <script src="{{ asset_url }}" type="text/javascript"></script>
     {% endjavascripts %}
+
+    <script type="text/javascript">
+        var json = $.getJSON("/public/js/toastrOptions.json");
+        toastr["info"]("Welcome!", "sd");
+    </script>
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block bottom_body_javascripts %}
 {% endblock %}
 
 

@@ -6765,8 +6765,7 @@ button.close {
   right: -20px;
   bottom: -60px;
   backface-visibility: hidden;
-  background-image: url(/public/imgs/scifi-ship-wallpaper-1.jpg);
-  background-attachment: scroll;
+  background: url(/public/imgs/2784414-illustration_missionscreen_fleetaction-fs8.png) scroll;
   background-size: cover;
   z-index: -999;
 }
