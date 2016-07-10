@@ -4,27 +4,38 @@
 {# ... you will probably extends your base template, like base.html.twig #}
 {% block body %}
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="blur"></div>
 
 
-    <div class="wrapper">
-        <form class="form-signin" action="{{ path('authorization') }}" method="post">
-            <h2 class="form-signin-heading">Please login</h2>
-            <input type="text" class="form-control" name="_username" placeholder="Email Address" required=""
-                   autofocus=""/>
-            <input type="password" class="form-control" name="_password" placeholder="Password" required=""/>
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-            </label>
 
-            <input type="hidden" name="token_validate"
-                   value="{{ csrf_token('d41d8cd98f00b204e9800998ecf8427e') }}"
-            >
+    <div class="col-lg-1 col-md-1"></div>
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" style="
+    border-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin-top: 2.5%;
+    text-align: left;
+    height: 50%;
+    background: rgba(248, 249, 255, 0.19);
+    top: 35%;
+    margin-bottom: 5%">
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">login</button>
-        </form>
+        <div class="wrapper">
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <form class="form-signin" action="{{ path('authorization') }}" method="post">
+                <h2 class="form-signin-heading">Please login</h2>
+                <input type="text" class="form-control" name="_username" placeholder="Email Address" required=""
+                       autofocus=""/>
+                <input type="password" class="form-control" name="_password" placeholder="Password" required=""/>
+
+                <input type="hidden" name="token_validate"
+                       value="{{ csrf_token('d41d8cd98f00b204e9800998ecf8427e') }}"
+                >
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">login</button>
+            </form>
+        </div>
     </div>
 
 {% endblock %}

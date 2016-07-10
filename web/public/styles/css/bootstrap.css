@@ -6758,3 +6758,15 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.blur {
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -60px;
+  backface-visibility: hidden;
+  background-image: url(/public/imgs/scifi-ship-wallpaper-1.jpg);
+  background-attachment: scroll;
+  background-size: cover;
+  z-index: -999;
+}
