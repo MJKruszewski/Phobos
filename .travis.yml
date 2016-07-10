@@ -13,6 +13,7 @@ addons:
 
 php:
   - 7.0
+  - 7.1
   - hhvm
   - nightly
 
@@ -23,9 +24,5 @@ matrix:
 
 before_script:
     - rm -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
-    - flags="--prefer-dist"
-    - composer install $flags
-    - bin/composer install $flags
-    - git config --global user.name travis-ci
-    - git config --global user.email travis@example.com
-
+    - mkdir vendor
+    - composer install
