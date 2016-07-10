@@ -5,7 +5,9 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
         {% stylesheets
-        'public/styles/css/bootstrap.css' %}
+        'public/styles/css/bootstrap.css'
+        'public/styles/css/toastr.min.css'
+        %}
         <link href="{{ asset_url }}" rel="stylesheet">
         {% endstylesheets %}
     {% endblock %}
@@ -27,6 +29,7 @@
     {% javascripts
     'public/js/jquery-2.2.4.min.js'
     'public/styles/js/bootstrap.min.js'
+    'public/styles/js/toastr.min.js'
 
     filter='?uglifyjs2' %}
     <script src="{{ asset_url }}" type="text/javascript"></script>
