@@ -1,7 +1,0 @@
-user_homepage:
-    path:     /user/
-    defaults: { _controller: UserBundle:Default:index }
-
-user:
-    resource: "@UserBundle/Controller/"
-    type:     annotation

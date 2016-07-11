@@ -4,40 +4,24 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
         in_memory:
             memory:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
         main:
             pattern: ^/
-            anonymous: ~
             form_login:
-                login_path: /user/login
-                check_path: /user/authorization
-                default_target_path: /
+                provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-                csrf_parameter: token_validate
-                csrf_token_id: d41d8cd98f00b204e9800998ecf8427e
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
 
-            logout:
-                path:   _demo_logout
-                target: _demo
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-    acl:
-        connection: default
-
+            logout:       true
+            anonymous:    true
     access_control:
         - { path: ^/administration, roles: ROLE_ADMIN }
         - { path: ^/$, roles: ROLE_USER }
@@ -45,5 +29,7 @@ security:
         - { path: ^/user/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     encoders:
-         Symfony\Component\Security\Core\User\User: plaintext
-         UserBundle\Entity\User: sha512
+        FOS\UserBundle\Model\UserInterface: bcrypt
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
