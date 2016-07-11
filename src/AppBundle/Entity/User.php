@@ -6,7 +6,7 @@
  * Time: 22:54
  */
 
-namespace UserBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,15 +17,16 @@ use Doctrine\ORM\Mapping as ORM;
  * */
 class User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
 
     /** @ORM\Column(type="integer", length=1) */
     protected $status;
+
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="string", length=32, unique=true)
+     */
+    protected $id;
 
     /** @ORM\Column(type="string", length=20, unique=true) */
     protected $login;
@@ -40,17 +41,17 @@ class User
     protected $date_add;
 
     /**
-     * @param int $int
+     * @param string $int
      */
-    public function setId(int $int)
+    public function setId(string $int)
     {
         $this->id = $int;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getId() : int
+    public function getId() : string
     {
         return $this->id;
     }

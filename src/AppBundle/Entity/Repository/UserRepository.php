@@ -6,7 +6,7 @@
  * Time: 17:56
  */
 
-namespace UserBundle\Entity\Repository;
+namespace AppBundle\Entity\Repository;
 
 class UserRepository extends AbstractRepository
 {
