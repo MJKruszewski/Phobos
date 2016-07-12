@@ -1,27 +1,38 @@
 language: php
-
 sudo: false
+
+services:
+  - mysql
 
 cache:
   directories:
-    - $HOME/.composer/cache
-
-addons:
-  apt:
-    packages:
-      - parallel
-
-php:
-  - 7.0
-  - hhvm
-  - nightly
+    - $HOME/.composer/cache/files
 
 matrix:
   fast_finish: true
+  include:
+    - php: 7.0
+    - php: hhvm
   allow_failures:
-    - php: nightly
+    - php: hhvm
 
-before_script:
-    - rm -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
-    - mkdir vendor
-    - composer install
+env:
+  - SYMFONY_VERSION="3.0.*" DB=mysql
+
+before-install:
+  - composer self-update
+
+install:
+  - composer require satooshi/php-coveralls:~0.6@stable
+  - composer install
+  - cp app/config/parameters.yml.dist app/config/parameters.yml
+
+script:
+  - mkdir -p build/logs
+  - phpunit --coverage-clover build/logs/clover.xml
+
+after_script:
+  - php vendor/bin/coveralls -v
+
+notifications:
+slack: nonio:Qw2vMbsIGDOVdWScx3hazBzA
