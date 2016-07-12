@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8"/>
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}
-        {% stylesheets
-        'public/styles/css/bootstrap.css'
-        'public/styles/css/toastr.min.css' %}
-        <link href="{{ asset_url }}" rel="stylesheet">
-        {% endstylesheets %}
-    {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    {% block head %}
 
-    {% block head_javascripts %}
+        <meta charset="UTF-8"/>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets
+            'public/styles/css/bootstrap.css'
+            'public/styles/css/toastr.min.css' %}
+            <link href="{{ asset_url }}" rel="stylesheet">
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 
+        {% block head_javascripts %}
+
+        {% endblock %}
     {% endblock %}
 
 </head>
