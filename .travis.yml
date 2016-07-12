@@ -7,10 +7,10 @@ before_script:
     - mkdir -p build/logs
     - echo $COVERALLS_APIKEY > .coveralls.yml
     - composer self-update
-    - composer install --prefer-source --no-interaction --dev
     - php app/console doctrine:database:create --env=test
     - php app/console doctrine:schema:create --env=test
     - php app/console doctrine:fixtures:load -n --env=test
+    - composer install --prefer-source --no-interaction --dev
 
 matrix:
   allow_failures:
