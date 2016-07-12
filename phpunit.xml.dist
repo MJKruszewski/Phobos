@@ -22,10 +22,11 @@
 
     <filter>
         <whitelist>
-            <directory>src</directory>
+            <directory>src/Library</directory>
             <exclude>
                 <directory>src/*Bundle/Resources</directory>
                 <directory>src/*/*Bundle/Resources</directory>
+                <directory>src/Library/Tests</directory>
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
                 <directory>tests/</directory>
             </exclude>
