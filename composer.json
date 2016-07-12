@@ -32,7 +32,8 @@
     "phpspec/phpspec": "~2.0",
     "phpunit/phpunit": ">=5.4",
     "symfony/assetic-bundle": "^2.8",
-    "friendsofsymfony/user-bundle": "dev-master"
+    "friendsofsymfony/user-bundle": "dev-master",
+    "satooshi/php-coveralls": "^1.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
