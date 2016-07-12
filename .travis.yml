@@ -3,8 +3,14 @@ php:
   - '7.0'
 
 before_script:
+    - cp app/config/parameters.yml.dist app/config/parameters.yml
+    - mkdir -p build/logs
+    - echo $COVERALLS_APIKEY > .coveralls.yml
     - composer self-update
     - composer install --prefer-source --no-interaction --dev
+    - php app/console doctrine:database:create --env=test
+    - php app/console doctrine:schema:create --env=test
+    - php app/console doctrine:fixtures:load -n --env=test
 
 matrix:
   allow_failures:
@@ -17,6 +23,6 @@ script:
 cache:
     composer: true
 directories: vendor
-  
+
 after_success:
     - php bin/coveralls -v
