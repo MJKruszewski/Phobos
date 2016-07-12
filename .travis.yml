@@ -14,7 +14,8 @@ before_script:
     - php bin/console doctrine:database:create
     - php bin/console doctrine:schema:create
     - php bin/console doctrine:fixtures:load -n
-    - composer install --prefer-source --no-interaction --dev
+    - composer install
+    - composer require satooshi/php-coveralls
 
 matrix:
   allow_failures:
@@ -22,11 +23,11 @@ matrix:
   fast_finish: true
 
 script:
-    - phpunit -c app/
+    - vendor/bin/phpunit src/Library/
 
 cache:
     composer: true
 directories: vendor
 
 after_success:
-    - php bin/coveralls -v
+    - travis_retry php vendor/bin/coveralls -v
