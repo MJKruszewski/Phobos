@@ -11,10 +11,10 @@ before_script:
     - mkdir -p build/logs
     - echo $COVERALLS_APIKEY > .coveralls.yml
     - composer self-update
+    - composer install
     - php bin/console doctrine:database:create
     - php bin/console doctrine:schema:create
     - php bin/console doctrine:fixtures:load -n
-    - composer install
     - composer require satooshi/php-coveralls
 
 matrix:
