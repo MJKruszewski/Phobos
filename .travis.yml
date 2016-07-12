@@ -35,9 +35,6 @@ before_script:
 before-install:
   - composer self-update
 
-install:
-  - cp app/config/parameters.yml.dist app/config/parameters.yml
-
 script:
   - mkdir -p build/logs
   - phpunit --coverage-clover build/logs/clover.xml
