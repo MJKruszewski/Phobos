@@ -24,8 +24,27 @@
             {% endfor %}
         {% endif %}
 
-        <div>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
+        <div class="blur" xmlns="http://www.w3.org/1999/html"></div>
+
+
+
+        <div class="col-lg-1 col-md-1"></div>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" style="
+    border-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin-top: 2.5%;
+    text-align: left;
+    height: 50%;
+    background: rgba(248, 249, 255, 0.19);
+    top: 35%;
+    margin-bottom: 5%">
+
+
+            <div>
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+
         </div>
+
     {% endblock %}
