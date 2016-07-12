@@ -1,6 +1,8 @@
 language: php
 php:
   - '7.0'
+  - hhvm
+  - nightly
 
 before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
@@ -14,7 +16,7 @@ before_script:
 
 matrix:
   allow_failures:
-    - php: '7.0'
+    - php: nightly
   fast_finish: true
 
 script:
