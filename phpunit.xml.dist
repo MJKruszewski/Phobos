@@ -23,6 +23,7 @@
     <filter>
         <whitelist>
             <directory>src/Library</directory>
+            <directory>src/AppBundle/Controller</directory>
             <exclude>
                 <directory>src/*Bundle/Resources</directory>
                 <directory>src/*/*Bundle/Resources</directory>
