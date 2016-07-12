@@ -6,7 +6,7 @@
  * Time: 20:02
  */
 
-namespace Library\Validate;
+namespace LibraryBundle\Validate;
 
 
 class ValidationException extends \Exception

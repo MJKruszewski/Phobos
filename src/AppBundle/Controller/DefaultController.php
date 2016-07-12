@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use Library\Utilities\Helpers\ControllerAbstract;
+use LibraryBundle\Utilities\Helpers\ControllerAbstract;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

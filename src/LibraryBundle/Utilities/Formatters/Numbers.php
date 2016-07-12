@@ -6,15 +6,15 @@
  * Time: 13:12
  */
 
-namespace Library\Utilities\Formatters;
+namespace LibraryBundle\Utilities\Formatters;
 
-use Library\Utilities\Formatters\FormatterExceptions\NumberCastException;
-use Library\Utilities\Formatters\FormatterExceptions\NumberException;
-use Library\Validate\Locator\Factory;
+use LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberCastException;
+use LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberException;
+use LibraryBundle\Validate\Locator\Factory;
 
 /**
  * Class Numbers
- * @package Library\Utilities\Formatters
+ * @package LibraryBundle\Utilities\Formatters
  * <br />
  * <br />
  * Responsibility of Class: Operations on scalar type of numbers

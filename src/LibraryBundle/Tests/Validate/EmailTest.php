@@ -6,18 +6,18 @@
  * Time: 19:45
  */
 
-namespace Library\Tests\Validate;
+namespace LibraryBundle\Tests\Validate;
 
 
-use Library\Validate\Email;
-use Library\Validate\ValidationException;
+use LibraryBundle\Validate\Email;
+use LibraryBundle\Validate\ValidationException;
 
 class EmailTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider emailPositiveProvider
      * @param string $email
-     * @throws \Library\Validate\ValidationException
+     * @throws \LibraryBundle\Validate\ValidationException
      */
     public function testValidatePositive(string $email)
     {
@@ -31,7 +31,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider emailNegativeProvider
      * @param string $email
-     * @throws \Library\Validate\ValidationException
+     * @throws \LibraryBundle\Validate\ValidationException
      */
     public function testValidateNegative(string $email)
     {
@@ -45,7 +45,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider emailExceptionProvider
      * @param string $email
-     * @throws \Library\Validate\ValidationException
+     * @throws \LibraryBundle\Validate\ValidationException
      */
     public function testValidateException($email, $errorType)
     {
@@ -97,9 +97,9 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     public function emailExceptionProvider() : array
     {
         return [
-            [null, '\Library\Validate\ValidationException'],
-            ['', '\Library\Validate\ValidationException'],
-            [' ', '\Library\Validate\ValidationException']
+            [null, '\LibraryBundle\Validate\ValidationException'],
+            ['', '\LibraryBundle\Validate\ValidationException'],
+            [' ', '\LibraryBundle\Validate\ValidationException']
         ];
     }
 

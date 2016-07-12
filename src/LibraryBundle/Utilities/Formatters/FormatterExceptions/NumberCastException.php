@@ -6,7 +6,7 @@
  * Time: 13:14
  */
 
-namespace Library\Utilities\Formatters\FormatterExceptions;
+namespace LibraryBundle\Utilities\Formatters\FormatterExceptions;
 
 
 class NumberCastException extends NumberException

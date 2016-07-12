@@ -6,11 +6,11 @@
  * Time: 19:40
  */
 
-namespace Library\Validate;
+namespace LibraryBundle\Validate;
 
 /**
  * Class Email
- * @package Library\Validate
+ * @package LibraryBundle\Validate
  * <br />
  * <br />
  * Responsibility of Class: Validate Email

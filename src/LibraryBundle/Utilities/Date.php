@@ -6,11 +6,11 @@
  * Time: 20:34
  */
 
-namespace Library\Utilities;
+namespace LibraryBundle\Utilities;
 
 /**
  * Class Date
- * @package Library\Utilities
+ * @package LibraryBundle\Utilities
  * <br />
  * <br />
  * Responsibility of Class: Operations on Date

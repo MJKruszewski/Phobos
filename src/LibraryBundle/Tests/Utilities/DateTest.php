@@ -6,10 +6,10 @@
  * Time: 20:44
  */
 
-namespace Library\Tests\Utilities;
+namespace LibraryBundle\Tests\Utilities;
 
 
-use Library\Utilities\Date;
+use LibraryBundle\Utilities\Date;
 
 class DateTest extends \PHPUnit_Framework_TestCase
 {

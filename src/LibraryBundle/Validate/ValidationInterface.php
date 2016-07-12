@@ -6,11 +6,11 @@
  * Time: 19:39
  */
 
-namespace Library\Validate;
+namespace LibraryBundle\Validate;
 
 /**
  * Interface ValidationInterface
- * @package Library\Validate
+ * @package LibraryBundle\Validate
  */
 interface ValidationInterface
 {

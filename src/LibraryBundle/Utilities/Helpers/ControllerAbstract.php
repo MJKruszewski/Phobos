@@ -6,7 +6,7 @@
  * Time: 19:57
  */
 
-namespace Library\Utilities\Helpers;
+namespace LibraryBundle\Utilities\Helpers;
 
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ControllerAbstract
- * @package Library\Utilities\Helpers
+ * @package LibraryBundle\Utilities\Helpers
  */
 abstract class ControllerAbstract extends Controller
 {

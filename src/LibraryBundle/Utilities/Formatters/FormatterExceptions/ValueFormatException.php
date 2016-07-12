@@ -6,7 +6,7 @@
  * Time: 14:03
  */
 
-namespace Library\Utilities\Formatters\FormatterExceptions;
+namespace LibraryBundle\Utilities\Formatters\FormatterExceptions;
 
 
 class ValueFormatException extends \Exception
