@@ -14,53 +14,54 @@ use LibraryBundle\Validate\Number;
 class NumberTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider emailPositiveProvider
-     * @param string $email
+     * @dataProvider numberPositiveProvider
+     * @param string $number
      * @throws \LibraryBundle\Validate\ValidationException
      */
-    public function testValidatePositive(string $email)
+    public function testValidatePositive(string $number)
     {
-        $emailValidation = new Number();
-        $emailValidation->setValueToValidate($email);
-        $emailValidation->validate();
+        $numberValidation = new Number();
+        $numberValidation->setValueToValidate($number);
+        $numberValidation->validate();
 
-        $this->assertTrue($emailValidation->getResultOfValidation(), 'Validation of Email is broken');
+        $this->assertTrue($numberValidation->getResultOfValidation(), 'Validation of numbers is broken');
     }
 
     /**
-     * @dataProvider emailNegativeProvider
-     * @param string $email
+     * @dataProvider numberNegativeProvider
+     * @param string $number
      * @throws \LibraryBundle\Validate\ValidationException
      */
-    public function testValidateNegative(string $email)
+    public function testValidateNegative(string $number)
     {
-        $emailValidation = new Number();
-        $emailValidation->setValueToValidate($email);
-        $emailValidation->validate();
+        $numberValidation = new Number();
+        $numberValidation->setValueToValidate($number);
+        $numberValidation->validate();
 
-        $this->assertNotTrue($emailValidation->getResultOfValidation(), 'Validation of Email is broken');
+        $this->assertNotTrue($numberValidation->getResultOfValidation(), 'Validation of numbers is broken');
     }
 
     /**
-     * @dataProvider emailExceptionProvider
-     * @param string $email
+     * @dataProvider numberExceptionProvider
+     * @param string $number
+     * @param $errorType
      * @throws \LibraryBundle\Validate\ValidationException
      */
-    public function testValidateException($email, $errorType)
+    public function testValidateException($number, $errorType)
     {
-        $emailValidation = new Number();
+        $numberValidation = new Number();
         $this->expectException($errorType);
 
-        $emailValidation->setValueToValidate($email);
-        $emailValidation->validate();
+        $numberValidation->setValueToValidate($number);
+        $numberValidation->validate();
 
-        $this->assertNotTrue($emailValidation->getResultOfValidation(), 'Validation of Email is broken');
+        $this->assertNotTrue($numberValidation->getResultOfValidation(), 'Validation of Email is broken');
     }
 
     /**
      * @return array
      */
-    public function emailPositiveProvider() : array
+    public function numberPositiveProvider() : array
     {
         return [
             ['1'],
@@ -78,7 +79,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function emailNegativeProvider() : array
+    public function numberNegativeProvider() : array
     {
         return [
             ['4s'],
@@ -94,7 +95,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function emailExceptionProvider() : array
+    public function numberExceptionProvider() : array
     {
         return [
             [null, '\LibraryBundle\Validate\ValidationException'],
