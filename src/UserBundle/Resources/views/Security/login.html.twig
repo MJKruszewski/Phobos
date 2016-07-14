@@ -4,7 +4,7 @@
 
 {% block fos_user_content %}
     {% if error %}
-        <script type="text/javascript">toastr["error"]("Login Failed !", "{{ error.messageKey|trans(error.messageData, 'security') }}");</script>
+        <script type="text/javascript">toastr["error"]("{{ error.messageKey|trans(error.messageData, 'security') }}", "{{ 'login.failed'|trans }}");</script>
     {% endif %}
 
     <form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
