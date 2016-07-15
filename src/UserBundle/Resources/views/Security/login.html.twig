@@ -2,12 +2,22 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block top_body_javascripts %}
+    {{ parent() }}
+    {% javascripts
+    'public/Bundles/User/js/encrypt.min.js'
+
+    filter='?uglifyjs2' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+
 {% block fos_user_content %}
     {% if error %}
         <script type="text/javascript">toastr["error"]("{{ error.messageKey|trans(error.messageData, 'security') }}", "{{ 'login.failed'|trans }}");</script>
     {% endif %}
 
-    <form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
+    <form id="login_form" class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
         <h2 class="form-signin-heading">Please login</h2>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
@@ -25,6 +35,5 @@
         <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit"
                value="{{ 'security.login.submit'|trans }}"/>
     </form>
-
 
 {% endblock fos_user_content %}

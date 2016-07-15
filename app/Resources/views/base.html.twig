@@ -31,10 +31,7 @@
     <script src="{{ asset_url }}" type="text/javascript"></script>
     {% endjavascripts %}
 
-    <script type="text/javascript">
-        var json = $.getJSON("/public/js/toastrOptions.json");
-        toastr["info"]("Welcome!", "sd");
-    </script>
+    <script type="text/javascript">$.getJSON("/public/js/toastrOptions.json");</script>
 {% endblock %}
 
 {% block body %}{% endblock %}
