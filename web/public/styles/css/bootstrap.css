@@ -6769,3 +6769,14 @@ button.close {
   background-size: cover;
   z-index: -999;
 }
+
+.mainBody {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-top: 2.5%;
+  text-align: left;
+  height: 50%;
+  background: rgba(248, 249, 255, 0.45);
+  top: 35%;
+  margin-bottom: 5%
+}
