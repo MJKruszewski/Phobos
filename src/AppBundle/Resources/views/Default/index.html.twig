@@ -1,1 +1,19 @@
-Hello World!
+{% extends 'base.html.twig' %}
+
+
+
+    {% block body %}
+
+        <div class="blur" xmlns="http://www.w3.org/1999/html"></div>
+
+
+
+        <div class="col-lg-1 col-md-1"></div>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 mainBody">
+
+            <h2>
+                Greetings: <b>{{ user_name }}</b>
+            </h2>
+        </div>
+
+    {% endblock %}
