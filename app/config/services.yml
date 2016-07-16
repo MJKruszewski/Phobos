@@ -13,3 +13,4 @@ services:
             arguments:
                 - '@router'
                 - '@session'
+                - '@translator'
