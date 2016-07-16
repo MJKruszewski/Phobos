@@ -1,2 +1,3 @@
 login:
     failed: 'Nieudana próba logowania!'
+Bad credentials.: 'Błędne dane logowania'
