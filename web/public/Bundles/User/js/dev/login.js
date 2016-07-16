@@ -4,20 +4,31 @@
 var Login = (function () {
     'use strict';
 
+    function preparePostRequest() {
+        var username = jQuery('input[name="_username"]').val(),
+            password = MD5.Run(jQuery('input[name="_password"]').val()),
+            submit = jQuery('input[name="_submit"]').val(),
+            rememberMe = jQuery('input[name="_remember_me"]').val(),
+            csrfToken = jQuery('input[name="_csrf_token"]').val(),
+            serializedData =
+                '_username=' + username
+                + '&_password=' + password
+                + '&_submit=' + submit
+                + '&_remember_me=' + rememberMe
+                + '&_csrf_token=' + csrfToken;
+
+        return serializedData + '&_checksum=' + MD5.Run(username + password + submit + rememberMe + csrfToken);
+    }
+
     function doRequest() {
         var request, serializedData, form = $('#login_form'), inputs = form.find('input');
-        console.log(form);
+
         form.submit(function (event) {
             if (request) {
                 request.abort();
             }
 
-            serializedData =
-                '_username=' + jQuery('input[name="_username"]').val()
-                // + '&_password=' + MD5.Run(jQuery('input[name="_password"]').val())
-                + '&_password=' + jQuery('input[name="_password"]').val()
-                + '&_submit=' + jQuery('input[name="_submit"]').val()
-                + '&_csrf_token=' + jQuery('input[name="_csrf_token"]').val();
+            serializedData = preparePostRequest();
 
             inputs.prop("disabled", true);
 
@@ -27,15 +38,15 @@ var Login = (function () {
                 data: serializedData
             });
 
-            request.done(function (response, textStatus, jqXHR) {
-                if (response == 1) {
-                    // window.location.replace("../pages/index");
+            request.done(function (response) {
+                if (response.success) {
+                    window.location.replace("app");
                 } else {
-                    toastr.warning(response);
+                    toastr.warning(response.message);
                 }
             });
 
-            request.fail(function (jqXHR, textStatus, errorThrown) {
+            request.fail(function () {
                 toastr.error('Wystąpił nieoczekiwany błąd');
             });
 
