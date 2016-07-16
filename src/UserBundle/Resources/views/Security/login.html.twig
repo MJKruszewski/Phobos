@@ -6,6 +6,7 @@
     {{ parent() }}
     {% javascripts
     'public/Bundles/User/js/encrypt.min.js'
+    'public/Bundles/User/js/dev/login.js'
 
     filter='?uglifyjs2' %}
     <script src="{{ asset_url }}" type="text/javascript"></script>
@@ -35,5 +36,6 @@
         <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit"
                value="{{ 'security.login.submit'|trans }}"/>
     </form>
+    <script type="text/javascript">Login.Run();</script>
 
 {% endblock fos_user_content %}
