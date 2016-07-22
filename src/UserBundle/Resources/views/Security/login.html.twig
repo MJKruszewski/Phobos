@@ -18,24 +18,41 @@
         <script type="text/javascript">toastr["error"]("{{ error.messageKey|trans(error.messageData, 'security') }}", "{{ 'login.failed'|trans }}");</script>
     {% endif %}
 
-    <form id="login_form" class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
-        <h2 class="form-signin-heading">Please login</h2>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mainBodyContentBox">
+        {{ render(controller('AppBundle:Default:news')) }}
+    </div>
 
-        <label for="username">{{ 'security.login.username'|trans }}</label>
-        <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"
-               required="required" autofocus=""/>
+    <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
+    </div>
 
-        <label for="password">{{ 'security.login.password'|trans }}</label>
-        <input type="password" class="form-control" id="password" name="_password" required="required"/>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") == false %}
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mainBodyContentBox">
+            <form id="login_form" class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
+                <h2 class="form-signin-heading">Please login</h2>
 
-        <input type="checkbox" id="remember_me" name="_remember_me" />
-        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
-        <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit"
-               value="{{ 'security.login.submit'|trans }}"/>
-    </form>
-    <script type="text/javascript">Login.Run();</script>
+                <label for="username">{{ 'security.login.username'|trans }}</label>
+                <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"
+                       required="required" autofocus=""/>
+
+                <label for="password">{{ 'security.login.password'|trans }}</label>
+                <input type="password" class="form-control" id="password" name="_password" required="required"/>
+
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                <input type="checkbox" id="remember_me" name="_remember_me"/>
+
+                <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit"
+                       value="{{ 'security.login.submit'|trans }}"/>
+            </form>
+            <br/>
+        </div>
+        <script type="text/javascript">Login.Run();</script>
+    {% else %}
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mainBodyContentBox">
+            <br/>
+        </div>
+    {% endif %}
 
 {% endblock fos_user_content %}
