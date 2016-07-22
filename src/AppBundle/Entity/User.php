@@ -22,22 +22,22 @@ class User extends BaseUser
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="string", length=32, unique=true)
+     * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
-     * @param string $int
+     * @param int $int
      */
-    public function setId(string $int)
+    public function setId(int $int)
     {
         $this->id = $int;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getId() : string
+    public function getId() : int
     {
         return $this->id;
     }
