@@ -17,7 +17,7 @@ use Doctrine\ORM\EntityRepository;
 abstract class AbstractRepository extends EntityRepository
 {
 
-    const BUNDLE_NAME = 'UserBundle';
+    const BUNDLE_NAME = 'AppBundle';
 
     /**
      * @return string
