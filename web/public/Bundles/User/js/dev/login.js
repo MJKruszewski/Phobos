@@ -8,7 +8,7 @@ var Login = (function () {
         var username = jQuery('input[name="_username"]').val(),
             password = MD5.Run(jQuery('input[name="_password"]').val()),
             submit = jQuery('input[name="_submit"]').val(),
-            rememberMe = jQuery('input[name="_remember_me"]').val(),
+            rememberMe = jQuery('input[name="_remember_me"]:checked').val(),
             csrfToken = jQuery('input[name="_csrf_token"]').val(),
             serializedData =
                 '_username=' + username
@@ -46,8 +46,8 @@ var Login = (function () {
                 }
             });
 
-            request.fail(function () {
-                toastr.error('Wystąpił nieoczekiwany błąd');
+            request.fail(function (jqXHR, textStatus, error) {
+                toastr.error(error);
             });
 
             request.always(function () {
