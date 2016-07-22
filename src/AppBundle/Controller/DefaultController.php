@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Repository\NewsRepository;
+use AppBundle\Entity\Repository\ProjectProgressRepository;
 use LibraryBundle\Utilities\Helpers\ControllerAbstract;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,7 +29,7 @@ class DefaultController extends ControllerAbstract
      * @return \Symfony\Component\HttpFoundation\Response
      * @todo move positions of menu to database
      */
-    public function topMenuAction(Request $request)
+    public function topMenuAction()
     {
         $isAuthorized = $this->getAuthorizationChecker()->isGranted('IS_AUTHENTICATED_REMEMBERED');
 
@@ -47,6 +49,34 @@ class DefaultController extends ControllerAbstract
         return $this->render('@AppBundle/Resources/views/Menu/TopMenu.html.twig', [
             'menu_positions' => $menuPositions,
             'is_authenticated' => $isAuthorized,
+        ]);
+    }
+
+    /**
+     * @Route("/news", name="news")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newsAction(Request $request)
+    {
+        /**
+         * @var NewsRepository $newsRepository
+         * @var ProjectProgressRepository $projectProgressRepository
+         */
+        $newsRepository = $this->getDoctrine()->getRepository('AppBundle\Entity\News');
+        $projectProgressRepository = $this->getDoctrine()->getRepository('AppBundle\Entity\ProjectProgress');
+
+        $news = $newsRepository->getLastNews($request->get('page_number', 0));
+        $progresses = $projectProgressRepository->findAllToArray();
+
+        foreach ($progresses as $key => $progressElement) {
+            $progresses[$progressElement['name']] = $progressElement;
+            unset($progresses[$key]);
+        }
+
+        return $this->render('@AppBundle/Resources/views/Default/news.html.twig', [
+            'news' => $news,
+            'progresses' => $progresses
         ]);
     }
 }
