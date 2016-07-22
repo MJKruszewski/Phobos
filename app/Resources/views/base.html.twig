@@ -34,8 +34,11 @@
     <script type="text/javascript">$.getJSON("/public/js/toastrOptions.json");</script>
 {% endblock %}
 
-{% block body %}
+{% block body_topMenu %}
     {{ render(controller('AppBundle:Default:topMenu')) }}
+{% endblock %}
+
+{% block body %}
 
 {% endblock %}
 
