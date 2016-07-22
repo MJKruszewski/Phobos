@@ -9,9 +9,9 @@
 namespace LibraryBundle\Utilities\Helpers;
 
 use AppBundle\Entity\User;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * Class ControllerAbstract
@@ -22,9 +22,25 @@ abstract class ControllerAbstract extends Controller
     /**
      * @return \AppBundle\Entity\User
      */
-    public function getUser()
+    public function getUser() : User
     {
         return $this->get('security.token_storage')->getToken()->getUser();
+    }
+
+    /**
+     * @return \Symfony\Component\Security\Core\Authentication\Token\TokenInterface
+     */
+    public function getToken() : TokenInterface
+    {
+        return $this->get('security.token_storage')->getToken();
+    }
+
+    /**
+     * @return AuthorizationCheckerInterface
+     */
+    public function getAuthorizationChecker() : AuthorizationCheckerInterface
+    {
+        return $this->get('security.authorization_checker');
     }
 
 }

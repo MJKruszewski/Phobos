@@ -25,23 +25,28 @@ class DefaultController extends ControllerAbstract
     /**
      * @Route("/topMenu", name="top_menu")
      * @return \Symfony\Component\HttpFoundation\Response
+     * @todo move positions of menu to database
      */
-    public function topMenuAction()
+    public function topMenuAction(Request $request)
     {
-        $menuPositions = [];
+        $isAuthorized = $this->getAuthorizationChecker()->isGranted('IS_AUTHENTICATED_REMEMBERED');
 
-//        if ($this->getUser()->isEnabled()) {
+        if ($isAuthorized) {
             $menuPositions = [
-              ['name' => 'logout', 'path' => '/logout'],
-              ['name' => 'register', 'path' => '/register'],
-              ['name' => 'login', 'path' => '/']
+                ['name' => 'Home', 'clear_path' => 'app', 'path' => '/app'],
+                ['name' => 'Planet', 'clear_path' => 'register', 'path' => '/register'],
+                ['name' => 'Messages', 'clear_path' => 'register', 'path' => '/register'],
+                ['name' => 'Smfn', 'clear_path' => 'register', 'path' => '/register'],
             ];
-//        } else {
-//
-//        }
+        } else {
+            $menuPositions = [
+                ['name' => 'Register', 'clear_path' => 'register', 'path' => '/register'],
+            ];
+        }
 
         return $this->render('@AppBundle/Resources/views/Menu/TopMenu.html.twig', [
-            'menu_positions' => $menuPositions
+            'menu_positions' => $menuPositions,
+            'is_authenticated' => $isAuthorized,
         ]);
     }
 }
