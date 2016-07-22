@@ -1,40 +1,37 @@
+{% javascripts
+'public/Bundles/App/js/topmenu.min.js'
+
+filter='?uglifyjs2' %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+{% endjavascripts %}
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse"
+                    class="navbar-toggle collapsed" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">Project name</a>
+            <a href="/" class="navbar-brand">Phobos</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
                 {% for menu_position in menu_positions %}
-                    <li><a href="{{ menu_position.path|e }}">{{ menu_position.name|e }}</a></li>
+                    <li id="{{ menu_position.clear_path }}"><a
+                                href="{{ menu_position.path|e }}">{{ menu_position.name|e }}</a></li>
                 {% endfor %}
-                <li class="dropdown">
-                    <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider" role="separator"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">Default</a></li>
-                <li><a href="../navbar-static-top/">Static top</a></li>
+                {% if is_authenticated == true %}
+                    <li><a href="/logout">Logout</a></li>
+                {% endif %}
                 <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
+
+<script type="text/javascript">TopMenu.Run();</script>
