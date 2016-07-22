@@ -1,0 +1,17 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block top_body_javascripts %}
+    {{ parent() }}
+    {% javascripts
+    'public/Bundles/User/js/encrypt.min.js'
+    'public/Bundles/User/js/register.min.js'
+
+    filter='?uglifyjs2' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+
+{% endblock fos_user_content %}
