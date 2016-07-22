@@ -1,0 +1,9 @@
+{% for one_news in news %}
+    <h1>{{ one_news.title }}</h1>
+    <br/>
+    <h4>
+            {{ include(template_from_string(one_news.content))|raw }}
+    </h4>
+    <hr/>
+{% endfor %}
+
