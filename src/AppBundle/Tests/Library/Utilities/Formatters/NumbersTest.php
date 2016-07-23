@@ -6,17 +6,17 @@
  * Time: 13:51
  */
 
-namespace LibraryBundle\Tests\Utilities\Formatters;
+namespace AppBundle\Tests\Library\Utilities\Formatters;
 
 
-use LibraryBundle\Utilities\Formatters\Numbers;
+use AppBundle\Library\Utilities\Formatters\Numbers;
 
 class NumbersTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider castStringToIntProvider
-     * @throws \LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberCastException
-     * @throws \LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberException
+     * @throws \AppBundle\Library\Utilities\Formatters\FormatterExceptions\NumberCastException
+     * @throws \AppBundle\Library\Utilities\Formatters\FormatterExceptions\NumberException
      */
     public function testCastStringToIntPositive($valueToCast)
     {
@@ -25,24 +25,24 @@ class NumbersTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider castStringToIntDoubleProvider
-     * @throws \LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberCastException
-     * @throws \LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberException
+     * @throws \AppBundle\Library\Utilities\Formatters\FormatterExceptions\NumberCastException
+     * @throws \AppBundle\Library\Utilities\Formatters\FormatterExceptions\NumberException
      */
     public function testCastStringToIntDoubleNegativeException($exceptedValue, $valueToCast)
     {
-        $this->expectException('\LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberCastException');
+        $this->expectException('\AppBundle\Library\Utilities\Formatters\FormatterExceptions\NumberCastException');
         $this->expectExceptionMessage("$exceptedValue not equals $valueToCast");
         $this->assertEquals($exceptedValue, Numbers::castStringToInt("$valueToCast"));
     }
 
     /**
      * @dataProvider castStringToIntNegativeProvider
-     * @throws \LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberCastException
-     * @throws \LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberException
+     * @throws \AppBundle\Library\Utilities\Formatters\FormatterExceptions\NumberCastException
+     * @throws \AppBundle\Library\Utilities\Formatters\FormatterExceptions\NumberException
      */
     public function testCastStringToIntDoubleNegative($valueToCast)
     {
-        $this->expectException('\LibraryBundle\Utilities\Formatters\FormatterExceptions\NumberException');
+        $this->expectException('\AppBundle\Library\Utilities\Formatters\FormatterExceptions\NumberException');
         $this->expectExceptionMessage("$valueToCast is not a number");
         Numbers::castStringToInt("$valueToCast");
     }

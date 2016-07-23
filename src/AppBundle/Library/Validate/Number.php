@@ -6,7 +6,7 @@
  * Time: 13:17
  */
 
-namespace LibraryBundle\Validate;
+namespace AppBundle\Library\Validate;
 
 
 class Number extends ValidationAbstract

@@ -6,11 +6,11 @@
  * Time: 19:46
  */
 
-namespace LibraryBundle\Validate;
+namespace AppBundle\Library\Validate;
 
 /**
  * Class ValidationAbstract
- * @package LibraryBundle\Validate
+ * @package AppBundle\Library\Validate
  */
 abstract class ValidationAbstract implements ValidationInterface
 {

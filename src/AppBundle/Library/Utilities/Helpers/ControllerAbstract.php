@@ -6,7 +6,7 @@
  * Time: 19:57
  */
 
-namespace LibraryBundle\Utilities\Helpers;
+namespace AppBundle\Library\Utilities\Helpers;
 
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * Class ControllerAbstract
- * @package LibraryBundle\Utilities\Helpers
+ * @package AppBundle\Library\Utilities\Helpers
  */
 abstract class ControllerAbstract extends Controller
 {

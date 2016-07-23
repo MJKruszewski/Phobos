@@ -6,20 +6,20 @@
  * Time: 13:21
  */
 
-namespace LibraryBundle\Validate\Locator;
+namespace AppBundle\Library\Validate\Locator;
 
-use LibraryBundle\Validate\Email;
-use LibraryBundle\Validate\Number;
-use LibraryBundle\Validate\ValidationInterface;
+use AppBundle\Library\Validate\Email;
+use AppBundle\Library\Validate\Number;
+use AppBundle\Library\Validate\ValidationInterface;
 
 /**
  * Class Factory
- * @package LibraryBundle\Validate\Locator
+ * @package AppBundle\Library\Validate\Locator
  */
 class Factory
 {
     /**
-     * @return \LibraryBundle\Validate\ValidationInterface
+     * @return \AppBundle\Library\Validate\ValidationInterface
      */
     public static function getEmailValidation() : ValidationInterface
     {
@@ -27,7 +27,7 @@ class Factory
     }
 
     /**
-     * @return \LibraryBundle\Validate\ValidationInterface
+     * @return \AppBundle\Library\Validate\ValidationInterface
      */
     public static function getNumberValidator() : ValidationInterface
     {

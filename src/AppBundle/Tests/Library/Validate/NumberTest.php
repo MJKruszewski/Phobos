@@ -6,17 +6,17 @@
  * Time: 14:12
  */
 
-namespace LibraryBundle\Tests\Validate;
+namespace AppBundle\Tests\Library\Validate;
 
 
-use LibraryBundle\Validate\Number;
+use AppBundle\Library\Validate\Number;
 
 class NumberTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider numberPositiveProvider
      * @param string $number
-     * @throws \LibraryBundle\Validate\ValidationException
+     * @throws \AppBundle\Library\Validate\ValidationException
      */
     public function testValidatePositive(string $number)
     {
@@ -30,7 +30,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider numberNegativeProvider
      * @param string $number
-     * @throws \LibraryBundle\Validate\ValidationException
+     * @throws \AppBundle\Library\Validate\ValidationException
      */
     public function testValidateNegative(string $number)
     {
@@ -45,7 +45,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
      * @dataProvider numberExceptionProvider
      * @param string $number
      * @param $errorType
-     * @throws \LibraryBundle\Validate\ValidationException
+     * @throws \AppBundle\Library\Validate\ValidationException
      */
     public function testValidateException($number, $errorType)
     {
@@ -98,9 +98,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     public function numberExceptionProvider() : array
     {
         return [
-            [null, '\LibraryBundle\Validate\ValidationException'],
-            ['', '\LibraryBundle\Validate\ValidationException'],
-            [' ', '\LibraryBundle\Validate\ValidationException']
+            [null, '\AppBundle\Library\Validate\ValidationException'],
+            ['', '\AppBundle\Library\Validate\ValidationException'],
+            [' ', '\AppBundle\Library\Validate\ValidationException']
         ];
     }
 
