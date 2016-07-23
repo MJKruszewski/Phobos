@@ -1,0 +1,21 @@
+{% trans_default_domain 'AppBundle' %}
+
+<form id="login_form" class="form-signin" action="{{ path("createPlanetForNewUser") }}" method="post">
+
+    <h2 class="form-signin-heading">Stwórz nową planetę</h2>
+
+    <label for="planet_name">Nazwa Planety: </label>
+    <input type="text" class="form-control" id="planet_name" name="planet_name" required="required"/>
+
+
+    <label for="race">Rasa dominująca: </label>
+    <select id="race" name="race" class="form-control">
+        {% for race in races %}
+            <option value="{{ race.id }}">{{ race.name }}</option>
+        {% endfor %}
+    </select>
+
+    <br/>
+
+    <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit" value="Zapisz"/>
+</form>
