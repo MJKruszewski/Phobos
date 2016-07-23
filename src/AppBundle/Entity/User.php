@@ -27,6 +27,12 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var int
+     * @ORM\Column(name="credits", type="bigint", length=18)
+     */
+    private $credits;
+
+    /**
      * @param int $int
      */
     public function setId(int $int)
@@ -41,5 +47,22 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * @return int
+     */
+    public function getCredits() : int
+    {
+        return $this->credits;
+    }
+
+    /**
+     * @param int $credits
+     */
+    public function setCredits(int $credits)
+    {
+        $this->credits = $credits;
+    }
+    
 
 }

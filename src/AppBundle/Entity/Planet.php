@@ -46,6 +46,36 @@ class Planet
     private $size_of_planet;
 
     /**
+     * @var int
+     * @ORM\Column(name="uranium", type="bigint", length=18)
+     */
+    private $uranium;
+
+    /**
+     * @var int
+     * @ORM\Column(name="ferrum", type="bigint", length=18)
+     */
+    private $ferrum;
+
+    /**
+     * @var int
+     * @ORM\Column(name="silicon", type="bigint", length=18)
+     */
+    private $silicon;
+
+    /**
+     * @var int
+     * @ORM\Column(name="helium", type="bigint", length=18)
+     */
+    private $helium;
+
+    /**
+     * @var int
+     * @ORM\Column(name="is_capital", type="boolean")
+     */
+    private $is_capital;
+
+    /**
      * @var Races
      * @ORM\ManyToOne(targetEntity="Races")
      * @ORM\JoinColumn(name="planet_dominant_race", referencedColumnName="id")
@@ -65,6 +95,13 @@ class Planet
      * @ORM\JoinColumn(name="planet_climate", referencedColumnName="id")
      */
     private $planet_climate;
+
+    /**
+     * @var PlanetImagesDirectory
+     * @ORM\ManyToOne(targetEntity="PlanetImagesDirectory")
+     * @ORM\JoinColumn(name="planet_image", referencedColumnName="id")
+     */
+    private $planet_image;
 
     /**
      * @var string
@@ -175,6 +212,22 @@ class Planet
     }
 
     /**
+     * @return PlanetImagesDirectory
+     */
+    public function getPlanetImage() : PlanetImagesDirectory
+    {
+        return $this->planet_image;
+    }
+
+    /**
+     * @param PlanetImagesDirectory $planet_image
+     */
+    public function setPlanetImage(PlanetImagesDirectory $planet_image)
+    {
+        $this->planet_image = $planet_image;
+    }
+
+    /**
      * @return string
      */
     public function getName() : string
@@ -221,5 +274,86 @@ class Planet
     {
         $this->planet_climate = $planet_climate;
     }
+
+    /**
+     * @return int
+     */
+    public function getIsCapital() : int
+    {
+        return $this->is_capital;
+    }
+
+    /**
+     * @param int $is_capital
+     */
+    public function setIsCapital(int $is_capital)
+    {
+        $this->is_capital = $is_capital;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUranium() : int
+    {
+        return $this->uranium;
+    }
+
+    /**
+     * @param int $uranium
+     */
+    public function setUranium(int $uranium)
+    {
+        $this->uranium = $uranium;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFerrum() : int
+    {
+        return $this->ferrum;
+    }
+
+    /**
+     * @param int $ferrum
+     */
+    public function setFerrum(int $ferrum)
+    {
+        $this->ferrum = $ferrum;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSilicon() : int
+    {
+        return $this->silicon;
+    }
+
+    /**
+     * @param int $silicon
+     */
+    public function setSilicon(int $silicon)
+    {
+        $this->silicon = $silicon;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHelium() : int
+    {
+        return $this->helium;
+    }
+
+    /**
+     * @param int $helium
+     */
+    public function setHelium(int $helium)
+    {
+        $this->helium = $helium;
+    }
+
 
 }
