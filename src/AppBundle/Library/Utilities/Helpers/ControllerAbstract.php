@@ -8,8 +8,10 @@
 
 namespace AppBundle\Library\Utilities\Helpers;
 
+use AppBundle\Entity\Repository\PlanetRepository;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
@@ -22,15 +24,23 @@ abstract class ControllerAbstract extends Controller
     /**
      * @return \AppBundle\Entity\User
      */
-    public function getUser() : User
+    protected function getUser() : User
     {
         return $this->get('security.token_storage')->getToken()->getUser();
     }
 
     /**
+     * @return \AppBundle\Entity\Repository\PlanetRepository
+     */
+    protected function getPlanetRepository() : PlanetRepository
+    {
+        return $this->getDoctrine()->getRepository('AppBundle:Planet');
+    }
+
+    /**
      * @return \Symfony\Component\Security\Core\Authentication\Token\TokenInterface
      */
-    public function getToken() : TokenInterface
+    protected function getToken() : TokenInterface
     {
         return $this->get('security.token_storage')->getToken();
     }
@@ -38,9 +48,17 @@ abstract class ControllerAbstract extends Controller
     /**
      * @return AuthorizationCheckerInterface
      */
-    public function getAuthorizationChecker() : AuthorizationCheckerInterface
+    protected function getAuthorizationChecker() : AuthorizationCheckerInterface
     {
         return $this->get('security.authorization_checker');
+    }
+
+    /**
+     * @return Session
+     */
+    protected function getSession() : Session
+    {
+        return $this->get('session');
     }
 
 }
