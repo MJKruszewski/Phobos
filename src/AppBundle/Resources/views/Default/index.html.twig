@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
-
     {% block body %}
         {{ parent() }}
         <div><br/></div>
@@ -10,10 +8,32 @@
 
         <div class="col-lg-1 col-md-1"></div>
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 mainBody">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBodyContentBox2">
+                <h2>
+                    Greetings:  {{ user_name }}
+                </h2>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mainBodyContentBox">
+                {% if create_new_planet %}
+                    {{ render(controller('AppBundle:Planet:createPlanetForNewUserForm')) }}
+                {% else %}
+                    {{ render(controller('AppBundle:Planet:overview')) }}
+                {% endif %}
+            </div>
 
-            <h2>
-                Greetings: <b>{{ user_name }}</b>
-            </h2>
+            <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mainBodyContentBox">
+                <br/>
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    <li role="presentation"><a href="#">Profile</a></li>
+                    <li role="presentation"><a href="#">Messages</a></li>
+                </ul>
+                <br/>
+            </div>
+
         </div>
+        <div class="col-lg-1 col-md-1"></div>
 
     {% endblock %}
