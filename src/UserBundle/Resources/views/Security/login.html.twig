@@ -23,14 +23,13 @@
         {{ render(controller('AppBundle:Default:news')) }}
     </div>
 
-    <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
-    </div>
+    <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") == false %}
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mainBodyContentBox">
             <form id="login_form" class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
-                <h2 class="form-signin-heading">Please login</h2>
-
+                <h2 class="form-signin-heading">Zaloguj się</h2>
+                <hr/>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
                 <label for="username">{{ 'security.login.username'|trans }}</label>
@@ -51,6 +50,12 @@
         <script type="text/javascript">Login.Run();</script>
     {% else %}
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mainBodyContentBox">
+            <br/>
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
             <br/>
         </div>
     {% endif %}
