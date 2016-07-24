@@ -15,6 +15,14 @@ services:
                 - '@session'
                 - '@translator'
     twig.extension.loader:
-        class:        Twig_Extension_StringLoader
-        tags:
-             - { name: 'twig.extension' }
+            class:        Twig_Extension_StringLoader
+            tags:
+                 - { name: 'twig.extension' }
+    app.actualisation.action_listener:
+            class: AppBundle\EventListener\ActualisationListener
+            arguments:
+                - '@session'
+                - '@security.token_storage'
+                - '@doctrine'
+            tags:
+                - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
