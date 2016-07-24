@@ -1,0 +1,24 @@
+moods:
+  max_happy: "Pełne zadowolenie"
+  happy: "Zadowolenie"
+  med_happy: "Umiarkowane"
+  low_happy: "Rozczarowanie"
+  unhappy: "Buntownicze"
+
+planet_type: 'Typ Planety'
+planet_types:
+  volcano_planet: 'Wulkaniczna'
+  swamp_planet: 'Bagienna'
+  ocean_planet: 'Oceaniczna'
+  jungle_planet: 'Dżungla'
+  ice_planet: 'Lodowa'
+  forest_planet: 'Leśna'
+  desert_planet: 'Pustynna'
+  death_world: 'Martwa'
+
+resources: 'Zasoby'
+planet_resources: 'Zasoby Planety'
+planet_name_bfr: 'Planeta'
+
+citizien_moods: 'Nastroje obywateli'
+citizien_race: 'Rasa obywateli'
