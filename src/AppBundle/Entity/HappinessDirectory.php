@@ -31,6 +31,12 @@ class HappinessDirectory
     private $name;
 
     /**
+     * @var int
+     * @ORM\Column(name="level", type="integer" )
+     */
+    private $level;
+
+    /**
      * @return int
      */
     public function getId() : int
@@ -60,6 +66,22 @@ class HappinessDirectory
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLevel() : int
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param int $level
+     */
+    public function setLevel(int $level)
+    {
+        $this->level = $level;
     }
 
 }
