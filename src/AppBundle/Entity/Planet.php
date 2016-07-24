@@ -8,6 +8,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Buildings\FerrumMine;
+use AppBundle\Entity\Buildings\HeliumMine;
+use AppBundle\Entity\Buildings\SiliconMine;
+use AppBundle\Entity\Buildings\UraniumMine;
+use AppBundle\Library\Utilities\Resources\Helium;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -85,9 +90,9 @@ class Planet
     /**
      * @var HappinessDirectory
      * @ORM\ManyToOne(targetEntity="HappinessDirectory")
-     * @ORM\JoinColumn(name="happiness_level_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="happiness_level", referencedColumnName="id")
      */
-    private $happiness_level_id;
+    private $happiness_level;
 
     /**
      * @var ClimateDirectory
@@ -114,6 +119,40 @@ class Planet
      * @ORM\Column(name="date_add", type="date")
      */
     private $date_add;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="last_actualisation", type="datetime")
+     */
+    private $last_actualisation;
+
+    /**
+     * @var UraniumMine
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Buildings\UraniumMine")
+     * @ORM\JoinColumn(name="uranium_mine", referencedColumnName="id")
+     */
+    private $uranium_mine;
+
+    /**
+     * @var Buildings\FerrumMine
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Buildings\FerrumMine")
+     * @ORM\JoinColumn(name="ferrum_mine", referencedColumnName="id")
+     */
+    private $ferrum_mine;
+
+    /**
+     * @var HeliumMine
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Buildings\HeliumMine")
+     * @ORM\JoinColumn(name="helium_mine", referencedColumnName="id")
+     */
+    private $helium_mine;
+
+    /**
+     * @var SiliconMine
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Buildings\SiliconMine")
+     * @ORM\JoinColumn(name="silicon_mine", referencedColumnName="id")
+     */
+    private $silicon_mine;
 
     /**
      * @return int
@@ -198,17 +237,17 @@ class Planet
     /**
      * @return HappinessDirectory
      */
-    public function getHappinessLevelId() : HappinessDirectory
+    public function getHappinessLevel() : HappinessDirectory
     {
-        return $this->happiness_level_id;
+        return $this->happiness_level;
     }
 
     /**
-     * @param HappinessDirectory $happiness_level_id
+     * @param HappinessDirectory $happiness_level
      */
-    public function setHappinessLevelId(HappinessDirectory $happiness_level_id)
+    public function setHappinessLevel(HappinessDirectory $happiness_level)
     {
-        $this->happiness_level_id = $happiness_level_id;
+        $this->happiness_level = $happiness_level;
     }
 
     /**
@@ -355,5 +394,84 @@ class Planet
         $this->helium = $helium;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getLastActualisation() : \DateTime
+    {
+        return $this->last_actualisation;
+    }
+
+    /**
+     * @param \DateTime $last_actualisation
+     */
+    public function setLastActualisation(\DateTime $last_actualisation)
+    {
+        $this->last_actualisation = $last_actualisation;
+    }
+
+    /**
+     * @return UraniumMine
+     */
+    public function getUraniumMine() : UraniumMine
+    {
+        return $this->uranium_mine;
+    }
+
+    /**
+     * @param UraniumMine $uranium_mine
+     */
+    public function setUraniumMine(UraniumMine $uranium_mine)
+    {
+        $this->uranium_mine = $uranium_mine;
+    }
+
+    /**
+     * @return FerrumMine
+     */
+    public function getFerrumMine() : FerrumMine
+    {
+        return $this->ferrum_mine;
+    }
+
+    /**
+     * @param FerrumMine $ferrum_mine
+     */
+    public function setFerrumMine(FerrumMine $ferrum_mine)
+    {
+        $this->ferrum_mine = $ferrum_mine;
+    }
+
+    /**
+     * @return HeliumMine
+     */
+    public function getHeliumMine() : HeliumMine
+    {
+        return $this->helium_mine;
+    }
+
+    /**
+     * @param HeliumMine $helium_mine
+     */
+    public function setHeliumMine(HeliumMine $helium_mine)
+    {
+        $this->helium_mine = $helium_mine;
+    }
+
+    /**
+     * @return SiliconMine
+     */
+    public function getSiliconMine() : SiliconMine
+    {
+        return $this->silicon_mine;
+    }
+
+    /**
+     * @param SiliconMine $silicon_mine
+     */
+    public function setSiliconMine(SiliconMine $silicon_mine)
+    {
+        $this->silicon_mine = $silicon_mine;
+    }
 
 }
