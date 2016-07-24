@@ -23,7 +23,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Library\Utilities\Helpers\ControllerAbstract;
 
-class PlanetController extends ControllerAbstract
+class PlanetController extends ControllerAbstract implements ActualisationInterface
 {
     /**
      * @Route("/app/planet/createplanet", name="createPlanetForNewUser")
@@ -37,7 +37,7 @@ class PlanetController extends ControllerAbstract
 
         if (empty($planetRepository->findAllToArrayByOwnerId($this->getUser()->getId()))) {
             try {
-                $this->getDoctrine()->getManager()->beginTransaction();
+                $this->getConnection()->beginTransaction();
                 /**
                  * @var User $user
                  * @var Races $race
@@ -56,7 +56,7 @@ class PlanetController extends ControllerAbstract
                 $planet->setDateAdd(Date::getDateTime());
                 $planet->setFirstOwnerId($user);
                 $planet->setOwnerId($user);
-                $planet->setHappinessLevelId($happinessDirectory);
+                $planet->setHappinessLevel($happinessDirectory);
                 $planet->setPlanetClimate($climateDirectory);
                 $planet->setPlanetDominantRace($race);
                 $planet->setPlanetImage($planetImagesDirectory[array_rand($planetImagesDirectory, 1)]);
@@ -65,10 +65,12 @@ class PlanetController extends ControllerAbstract
 
                 $this->getDoctrine()->getManager()->persist($planet);
                 $this->getDoctrine()->getManager()->flush();
-                $this->getDoctrine()->getManager()->commit();
+                $this->getConnection()->commit();
 
             } catch (\Exception $e) {
-                $this->getDoctrine()->getManager()->rollback();
+                $this->getConnection()->rollback();
+            } finally {
+                $this->getConnection()->close();
             }
         } else {
             return $this->redirect('/app');
