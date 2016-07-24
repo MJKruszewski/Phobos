@@ -31,7 +31,10 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
-    translator: { fallbacks: [en] }
+    translator:
+        fallbacks: [en]
+        paths:
+            - '%kernel.root_dir%/../src/AppBundle/Resources/translations'
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
