@@ -1,47 +1,81 @@
+{% trans_default_domain 'AppBundle' %}
+
 <br/>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <span class="glyphiconBigger">    Planet: <b>{{ user_planet.getName() }}</b></span>
+        <span class="glyphicon glyphicon-globe glyphiconBigger"></span>
+        <span class="glyphiconBigger">    {{ 'planet_name_bfr'|trans }}: <b>{{ user_planet.getName() }}</b></span>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-        <img class="roundBorders" src="{{ planet_image_path }}">
+        <img style="border-radius: 5%" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 roundBorders"
+             src="{{ planet_image_path }}">
         <br/>
     </div>
 
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <div class="mainBodyContentBox2">
-            <br/>
-            &nbsp;&nbsp;&nbsp; <span class="glyphiconMedium">Credits: {{ credits }}</span>
-                    <span style="text-align: center;" class="glyphicon glyphicon-usd glyphiconMedium"
-                          aria-hidden="true"></span>
-            <hr/>
-            &nbsp;&nbsp;&nbsp; <span class="glyphiconBigger">Zasoby Planety:</span>
+        <div style="left: 90px" class="mainBodyContentBox2">
             <table>
+                &nbsp;&nbsp;&nbsp; <span class="glyphiconBigger">{{ 'resources'|trans }}:</span>
                 <tr class="glyphiconMedium">
-                    <th>&nbsp;&nbsp;&nbsp; Uranium:&nbsp;&nbsp;</th>
+                    <th>&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-usd"></span>&nbsp;Credits:</th>
+                    <th>{{ credits }}</th>
+                </tr>
+                <tr class="blank_row"></tr>
+                <tr class="blank_row"></tr>
+                <tr class="blank_row"></tr>
+                <tr class="glyphiconMedium">
+                    <th>&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-modal-window"></span>&nbsp;Uranium:&nbsp;&nbsp;
+                    </th>
                     <th>{{ uranium }}</th>
                 </tr>
                 <tr class="glyphiconMedium">
-                    <th>&nbsp;&nbsp;&nbsp; Ferrum:&nbsp;&nbsp;</th>
+                    <th>&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-compressed"></span>&nbsp;Ferrum:&nbsp;&nbsp;
+                    </th>
                     <th>{{ ferrum }}</th>
                 </tr>
                 <tr class="glyphiconMedium">
-                    <th>&nbsp;&nbsp;&nbsp; Silicon:&nbsp;&nbsp;</th>
+                    <th>&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-folder-close"></span>&nbsp;Silicon:&nbsp;&nbsp;
+                    </th>
                     <th>{{ silicon }}</th>
                 </tr>
                 <tr class="glyphiconMedium">
-                    <th>&nbsp;&nbsp;&nbsp; Helium:&nbsp;&nbsp;</th>
+                    <th>&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-tint"></span>&nbsp;Helium:&nbsp;&nbsp;</th>
                     <th>{{ helium }}</th>
                 </tr>
+                <tr class="blank_row"></tr>
+                <tr class="blank_row"></tr>
             </table>
         </div>
     </div>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBodyContentBox">
         <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <table>
+            <tr class="glyphiconMedium">
+                <th>&nbsp;&nbsp;&nbsp; <span
+                            class="glyphicon glyphicon-equalizer"></span>&nbsp;{{ 'citizien_moods'|trans }}:&nbsp;&nbsp;
+                </th>
+                <th>{{ ('moods.' ~ user_planet.getHappinessLevel().getName())|trans }}</th>
+                <th class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                             aria-valuemin="0" aria-valuemax="100"
+                             style="width:{{ user_planet.getHappinessLevel().getId()*25 }}%">
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr class="blank_row"></tr>
+            <tr class="glyphiconMedium">
+                <th>&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-user"></span>&nbsp;{{ 'citizien_race'|trans }}:&nbsp;&nbsp;
+                </th>
+                <th>{{ user_planet.getPlanetDominantRace().getName() }}</th>
+            </tr>
+            <tr class="glyphiconMedium">
+                <th>&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-cloud"></span>&nbsp;{{ 'planet_type'|trans }}:&nbsp;&nbsp;
+                </th>
+                <th>{{ ('planet_types.' ~ user_planet.getPlanetClimate().getName())|trans }}</th>
+            </tr>
+        </table>
     </div>
 </div>
