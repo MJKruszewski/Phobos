@@ -10,10 +10,12 @@ namespace AppBundle\Library\Utilities\Helpers;
 
 use AppBundle\Entity\Repository\PlanetRepository;
 use AppBundle\Entity\User;
+use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Class ControllerAbstract
@@ -59,6 +61,14 @@ abstract class ControllerAbstract extends Controller
     protected function getSession() : Session
     {
         return $this->get('session');
+    }
+
+    /**
+     * @return Connection
+     */
+    protected function getConnection() : Connection
+    {
+        return $this->getDoctrine()->getConnection();
     }
 
 }
