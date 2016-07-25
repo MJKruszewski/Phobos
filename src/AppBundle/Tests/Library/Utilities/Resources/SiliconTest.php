@@ -10,7 +10,7 @@ namespace AppBundle\Tests\Library\Utilities\Resources;
 
 
 use AppBundle\Entity\Buildings\SiliconMine;
-use AppBundle\Entity\HappinessDirectory;
+use AppBundle\Entity\Directories\HappinessDirectory;
 use AppBundle\Entity\Planet;
 use AppBundle\Library\Utilities\Resources\Silicon;
 
