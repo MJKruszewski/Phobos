@@ -8,6 +8,8 @@
 
 namespace UserBundle\Services;
 
+use AppBundle\Entity\Repository\PlanetRepository;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Translation\DataCollectorTranslator as Translator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
+use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 
 /**
  * Class AuthenticationHandler
@@ -39,18 +42,35 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
      * @var Translator
      */
     private $translator;
+    /**
+     * @var Doctrine
+     */
+    private $doctrine;
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
 
     /**
      * AuthenticationHandler constructor.
      * @param RouterInterface $router
      * @param Session $session
      * @param Translator $translator
+     * @param Doctrine $doctrine
      */
-    public function __construct(RouterInterface $router, Session $session, Translator $translator)
+    public function __construct(
+        RouterInterface $router,
+        Session $session,
+        Translator $translator,
+        Doctrine $doctrine,
+        TokenStorageInterface $tokenStorage
+    )
     {
         $this->setRouter($router);
         $this->setSession($session);
         $this->setTranslator($translator);
+        $this->setDoctrine($doctrine);
+        $this->setTokenStorage($tokenStorage);
     }
 
     /**
@@ -60,6 +80,8 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token) : Response
     {
+        $this->getSession()->set('actual_planet', $this->getPlanetRepository()->getActiveUserCapitalPlanet($this->getUser()->getId())->getId());
+
         if ($request->isXmlHttpRequest()) {
             $array = array('success' => true);
             $response = new JsonResponse($array);
@@ -140,5 +162,52 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
         $this->translator = $translator;
     }
 
+    /**
+     * @return Doctrine
+     */
+    private function getDoctrine()
+    {
+        return $this->doctrine;
+    }
+
+    /**
+     * @param Doctrine $doctrine
+     */
+    private function setDoctrine($doctrine)
+    {
+        $this->doctrine = $doctrine;
+    }
+
+    /**
+     * @return TokenStorageInterface
+     */
+    private function getTokenStorage()
+    {
+        return $this->tokenStorage;
+    }
+
+    /**
+     * @param TokenStorageInterface $tokenStorage
+     */
+    private function setTokenStorage($tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
+
+    /**
+     * @return \AppBundle\Entity\User
+     */
+    private function getUser()
+    {
+        return $this->getTokenStorage()->getToken()->getUser();
+    }
+
+    /**
+     * @return \AppBundle\Entity\Repository\PlanetRepository
+     */
+    private function getPlanetRepository() : PlanetRepository
+    {
+        return $this->getDoctrine()->getRepository('AppBundle:Planet');
+    }
 
 }
