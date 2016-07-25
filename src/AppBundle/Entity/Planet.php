@@ -12,7 +12,9 @@ use AppBundle\Entity\Buildings\FerrumMine;
 use AppBundle\Entity\Buildings\HeliumMine;
 use AppBundle\Entity\Buildings\SiliconMine;
 use AppBundle\Entity\Buildings\UraniumMine;
-use AppBundle\Library\Utilities\Resources\Helium;
+use AppBundle\Entity\Directories\ClimateDirectory;
+use AppBundle\Entity\Directories\HappinessDirectory;
+use AppBundle\Entity\Directories\PlanetImagesDirectory;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -75,7 +77,7 @@ class Planet
     private $helium;
 
     /**
-     * @var int
+     * @var bool
      * @ORM\Column(name="is_capital", type="boolean")
      */
     private $is_capital;
@@ -89,21 +91,21 @@ class Planet
 
     /**
      * @var HappinessDirectory
-     * @ORM\ManyToOne(targetEntity="HappinessDirectory")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Directories\HappinessDirectory")
      * @ORM\JoinColumn(name="happiness_level", referencedColumnName="id")
      */
     private $happiness_level;
 
     /**
      * @var ClimateDirectory
-     * @ORM\ManyToOne(targetEntity="ClimateDirectory")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Directories\ClimateDirectory")
      * @ORM\JoinColumn(name="planet_climate", referencedColumnName="id")
      */
     private $planet_climate;
 
     /**
      * @var PlanetImagesDirectory
-     * @ORM\ManyToOne(targetEntity="PlanetImagesDirectory")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Directories\PlanetImagesDirectory")
      * @ORM\JoinColumn(name="planet_image", referencedColumnName="id")
      */
     private $planet_image;
@@ -315,17 +317,17 @@ class Planet
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getIsCapital() : int
+    public function getIsCapital() : bool
     {
         return $this->is_capital;
     }
 
     /**
-     * @param int $is_capital
+     * @param bool $is_capital
      */
-    public function setIsCapital(int $is_capital)
+    public function setIsCapital(bool $is_capital)
     {
         $this->is_capital = $is_capital;
     }
