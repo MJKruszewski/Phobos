@@ -2,19 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: maciej
- * Date: 22.07.16
- * Time: 22:39
+ * Date: 25.07.16
+ * Time: 12:39
  */
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Directories;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="ClimateDirectory")
- * */
-class ClimateDirectory
+abstract class DirectoryAbstract
 {
     /**
      * @var int
@@ -28,7 +24,7 @@ class ClimateDirectory
      * @var string
      * @ORM\Column(name="name", type="string", length=20 )
      */
-    private $name;
+    protected $name;
 
     /**
      * @return int
@@ -61,6 +57,5 @@ class ClimateDirectory
     {
         $this->name = $name;
     }
-    
-    
+
 }

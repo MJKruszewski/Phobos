@@ -6,7 +6,7 @@
  * Time: 11:10
  */
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Directories;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,15 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="PlanetImagesDirectory")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\PlanetImagesDirectoryRepository")
  * */
-class PlanetImagesDirectory
+class PlanetImagesDirectory extends DirectoryAbstract
 {
-    /**
-     * @var int
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
 
     /**
      * @var string
@@ -37,22 +30,6 @@ class PlanetImagesDirectory
      * @ORM\JoinColumn(name="climate_type", referencedColumnName="id")
      */
     private $climate_type;
-
-    /**
-     * @return int
-     */
-    public function getId() : int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return string
