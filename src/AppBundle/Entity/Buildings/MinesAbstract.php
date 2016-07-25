@@ -10,15 +10,8 @@ namespace AppBundle\Entity\Buildings;
 
 use Doctrine\ORM\Mapping as ORM;
 
-abstract class AbstractMines
+abstract class MinesAbstract extends BuildingAbstract
 {
-    /**
-     * @var int
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
 
     /**
      * @var int
@@ -31,22 +24,6 @@ abstract class AbstractMines
      * @ORM\Column(name="base_value", type="integer")
      */
     protected $base_value;
-
-    /**
-     * @return int
-     */
-    public function getId() : int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return int

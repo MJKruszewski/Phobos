@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="UraniumMine")
  * */
-class UraniumMine extends AbstractMines
+class UraniumMine extends MinesAbstract
 {
 
 }
