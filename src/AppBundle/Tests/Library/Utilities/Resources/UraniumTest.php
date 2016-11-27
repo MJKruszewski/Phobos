@@ -9,51 +9,52 @@
 namespace AppBundle\Tests\Library\Utilities\Resources;
 
 
-use AppBundle\Entity\Buildings\UraniumMine;
 use AppBundle\Entity\Directories\HappinessDirectory;
 use AppBundle\Entity\Planet;
+use AppBundle\Library\Utilities\Buildings\Mines\UraniumMine;
 use AppBundle\Library\Utilities\Resources\Uranium;
 
 class UraniumTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider PrepareValuesProvider
-     * @param $baseValue
+     * @param $mineLevel
      * @param $happinessLevel
      * @param $uraniumQuantity
      * @param $dateDiff
      * @param $exceptedValue
+     * @internal param $baseValue
      */
-    public function testCalculateResource($baseValue, $happinessLevel, $uraniumQuantity, $dateDiff, $exceptedValue)
+    public function testCalculateResource($mineLevel, $happinessLevel, $uraniumQuantity, $dateDiff, $exceptedValue)
     {
-        $uraniummine = new UraniumMine();
-        $uraniummine->setBaseValue($baseValue);
+        $uraniumMine = new UraniumMine();
+        $uraniumMine->setBuildingLevel($mineLevel);
 
         $happniessDirectory = new HappinessDirectory();
         $happniessDirectory->setLevel($happinessLevel);
 
         $planet = new Planet();
         $planet->setUranium($uraniumQuantity);
-        $planet->setUraniumMine($uraniummine);
+        $planet->setUraniumMine($uraniumMine);
         $planet->setHappinessLevel($happniessDirectory);
 
-        $ferrum = new Uranium();
-        $ferrum->setPlanet($planet);
-        $ferrum->setDateDiff($dateDiff);
+        $uranium = new Uranium();
+        $uranium->setPlanet($planet);
+        $uranium->setDateDiff($dateDiff);
 
-        $this->assertEquals($exceptedValue, $ferrum->calculateResource());
+        $this->assertEquals($exceptedValue, $uranium->calculateResource());
     }
 
     public function PrepareValuesProvider()
     {
         return [
-            [500, 5, 300, 60, 925],
-            [789, 3, 856, 99043, 977667],
+            [500, 5, 300, 60, 62800],
+            [789, 3, 856, 99043, 97682014],
             [0, 3, 856, 99043, 856],
-            [423, 4, 856, 456, 4070],
-            [123, 1, 786, 456, 1019],
+            [423, 4, 856, 456, 322336],
+            [123, 1, 786, 456, 24156],
             [4786, 3, 0, 0, 0],
-            [335, 2, 78, 78, 295]
+            [335, 2, 78, 78, 21853]
         ];
     }
 }

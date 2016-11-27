@@ -9,25 +9,26 @@
 namespace AppBundle\Tests\Library\Utilities\Resources;
 
 
-use AppBundle\Entity\Buildings\SiliconMine;
 use AppBundle\Entity\Directories\HappinessDirectory;
 use AppBundle\Entity\Planet;
+use AppBundle\Library\Utilities\Buildings\Mines\SiliconMine;
 use AppBundle\Library\Utilities\Resources\Silicon;
 
 class SiliconTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider PrepareValuesProvider
-     * @param $baseValue
+     * @param $mineLevel
      * @param $happinessLevel
      * @param $siliconQuantity
      * @param $dateDiff
      * @param $exceptedValue
+     * @internal param $baseValue
      */
-    public function testCalculateResource($baseValue, $happinessLevel, $siliconQuantity, $dateDiff, $exceptedValue)
+    public function testCalculateResource($mineLevel, $happinessLevel, $siliconQuantity, $dateDiff, $exceptedValue)
     {
         $siliconMine = new SiliconMine();
-        $siliconMine->setBaseValue($baseValue);
+        $siliconMine->setBuildingLevel($mineLevel);
 
         $happniessDirectory = new HappinessDirectory();
         $happniessDirectory->setLevel($happinessLevel);
@@ -37,23 +38,23 @@ class SiliconTest extends \PHPUnit_Framework_TestCase
         $planet->setSiliconMine($siliconMine);
         $planet->setHappinessLevel($happniessDirectory);
 
-        $ferrum = new Silicon();
-        $ferrum->setPlanet($planet);
-        $ferrum->setDateDiff($dateDiff);
+        $silicon = new Silicon();
+        $silicon->setPlanet($planet);
+        $silicon->setDateDiff($dateDiff);
 
-        $this->assertEquals($exceptedValue, $ferrum->calculateResource());
+        $this->assertEquals($exceptedValue, $silicon->calculateResource());
     }
 
     public function PrepareValuesProvider()
     {
         return [
-            [500, 5, 300, 60, 925],
-            [789, 3, 856, 99043, 977667],
+            [500, 5, 300, 60, 62800],
+            [789, 3, 856, 99043, 97682014],
             [0, 3, 856, 99043, 856],
-            [423, 4, 856, 456, 4070],
-            [123, 1, 786, 456, 1019],
+            [423, 4, 856, 456, 322336],
+            [123, 1, 786, 456, 24156],
             [4786, 3, 0, 0, 0],
-            [335, 2, 78, 78, 295]
+            [335, 2, 78, 78, 21853]
         ];
     }
 }

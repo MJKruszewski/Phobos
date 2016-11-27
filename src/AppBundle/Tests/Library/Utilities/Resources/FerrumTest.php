@@ -9,10 +9,10 @@
 namespace AppBundle\Tests\Library\Utilities\Resources;
 
 
-use AppBundle\Entity\Buildings\FerrumMine;
 use AppBundle\Entity\Directories\HappinessDirectory;
 use AppBundle\Entity\Planet;
 use AppBundle\Entity\User;
+use AppBundle\Library\Utilities\Buildings\Mines\FerrumMine;
 use AppBundle\Library\Utilities\Resources\Ferrum;
 
 class FerrumTest extends \PHPUnit_Framework_TestCase
@@ -20,16 +20,17 @@ class FerrumTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider PrepareValuesProvider
-     * @param $baseValue
+     * @param $mineLevel
      * @param $happinessLevel
      * @param $ferrumQuantity
      * @param $dateDiff
      * @param $exceptedValue
+     * @internal param $baseValue
      */
-    public function testCalculateResource($baseValue, $happinessLevel, $ferrumQuantity, $dateDiff, $exceptedValue)
+    public function testCalculateResource($mineLevel, $happinessLevel, $ferrumQuantity, $dateDiff, $exceptedValue)
     {
         $ferrumMine = new FerrumMine();
-        $ferrumMine->setBaseValue($baseValue);
+        $ferrumMine->setBuildingLevel($mineLevel);
 
         $happniessDirectory = new HappinessDirectory();
         $happniessDirectory->setLevel($happinessLevel);
@@ -49,13 +50,13 @@ class FerrumTest extends \PHPUnit_Framework_TestCase
     public function PrepareValuesProvider()
     {
         return [
-            [500, 5, 300, 60, 925],
-            [789, 3, 856, 99043, 977667],
+            [5, 5, 300, 60, 925],
+            [7, 3, 856, 99043, 867482],
             [0, 3, 856, 99043, 856],
-            [423, 4, 856, 456, 4070],
-            [123, 1, 786, 456, 1019],
-            [4786, 3, 0, 0, 0],
-            [335, 2, 78, 78, 295]
+            [4, 4, 856, 456, 3896],
+            [1, 1, 786, 456, 976],
+            [4, 3, 0, 0, 0],
+            [3, 2, 78, 78, 273]
         ];
     }
 

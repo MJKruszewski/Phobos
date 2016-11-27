@@ -9,25 +9,25 @@
 namespace AppBundle\Tests\Library\Utilities\Resources;
 
 
-use AppBundle\Entity\Buildings\HeliumMine;
 use AppBundle\Entity\Directories\HappinessDirectory;
 use AppBundle\Entity\Planet;
+use AppBundle\Library\Utilities\Buildings\Mines\HeliumMine;
 use AppBundle\Library\Utilities\Resources\Helium;
 
 class HeliumTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider PrepareValuesProvider
-     * @param $baseValue
+     * @param $mineLevel
      * @param $happinessLevel
      * @param $heliumQuantity
      * @param $dateDiff
      * @param $exceptedValue
      */
-    public function testCalculateResource($baseValue, $happinessLevel, $heliumQuantity, $dateDiff, $exceptedValue)
+    public function testCalculateResource($mineLevel, $happinessLevel, $heliumQuantity, $dateDiff, $exceptedValue)
     {
         $heliumMine = new HeliumMine();
-        $heliumMine->setBaseValue($baseValue);
+        $heliumMine->setBuildingLevel($mineLevel);
 
         $happniessDirectory = new HappinessDirectory();
         $happniessDirectory->setLevel($happinessLevel);
@@ -37,23 +37,23 @@ class HeliumTest extends \PHPUnit_Framework_TestCase
         $planet->setHeliumMine($heliumMine);
         $planet->setHappinessLevel($happniessDirectory);
 
-        $ferrum = new Helium();
-        $ferrum->setPlanet($planet);
-        $ferrum->setDateDiff($dateDiff);
+        $helium = new Helium();
+        $helium->setPlanet($planet);
+        $helium->setDateDiff($dateDiff);
 
-        $this->assertEquals($exceptedValue, $ferrum->calculateResource());
+        $this->assertEquals($exceptedValue, $helium->calculateResource());
     }
 
     public function PrepareValuesProvider()
     {
         return [
-            [500, 5, 300, 60, 925],
-            [789, 3, 856, 99043, 977667],
-            [0, 3, 856, 99043, 856],
-            [423, 4, 856, 456, 4070],
-            [123, 1, 786, 456, 1019],
-            [4786, 3, 0, 0, 0],
-            [335, 2, 78, 78, 295]
+            [1, 5, 300, 60, 425],
+            [12, 3, 856, 99043, 1486501],
+            [2, 3, 856, 99043, 248463],
+            [3, 4, 856, 456, 3136],
+            [8, 1, 786, 456, 2306],
+            [0, 3, 0, 0, 0],
+            [19, 2, 78, 78, 1313]
         ];
     }
 
