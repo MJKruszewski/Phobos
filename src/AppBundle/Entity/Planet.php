@@ -8,13 +8,15 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Buildings\FerrumMine;
-use AppBundle\Entity\Buildings\HeliumMine;
-use AppBundle\Entity\Buildings\SiliconMine;
-use AppBundle\Entity\Buildings\UraniumMine;
-use AppBundle\Entity\Directories\ClimateDirectory;
-use AppBundle\Entity\Directories\HappinessDirectory;
-use AppBundle\Entity\Directories\PlanetImagesDirectory;
+use AppBundle\Library\Utilities\Buildings\BuildingInterface;
+use AppBundle\Library\Utilities\Buildings\Mines\FerrumMine;
+use AppBundle\Library\Utilities\Buildings\Mines\HeliumMine;
+use AppBundle\Library\Utilities\Buildings\Mines\MinesInterface;
+use AppBundle\Library\Utilities\Buildings\Mines\SiliconMine;
+use AppBundle\Library\Utilities\Buildings\Mines\UraniumMine;
+use AppBundle\Library\Utilities\Directories\ClimateDirectory;
+use AppBundle\Library\Utilities\Directories\HappinessDirectory;
+use AppBundle\Library\Utilities\Directories\PlanetImagesDirectory;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -90,23 +92,20 @@ class Planet
     private $planet_dominant_race;
 
     /**
-     * @var HappinessDirectory
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Directories\HappinessDirectory")
-     * @ORM\JoinColumn(name="happiness_level", referencedColumnName="id")
+     * @var int
+     * @ORM\Column(name="happiness_level", columnDefinition="ENUM('1','2','3','4','5')")
      */
     private $happiness_level;
 
     /**
-     * @var ClimateDirectory
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Directories\ClimateDirectory")
-     * @ORM\JoinColumn(name="planet_climate", referencedColumnName="id")
+     * @var int
+     * @ORM\Column(name="planet_climate", columnDefinition="ENUM('1','2','3','4','5','6','7','8')")
      */
     private $planet_climate;
 
     /**
-     * @var PlanetImagesDirectory
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Directories\PlanetImagesDirectory")
-     * @ORM\JoinColumn(name="planet_image", referencedColumnName="id")
+     * @var int
+     * @ORM\Column(name="planet_image", columnDefinition="ENUM('1','2','3','4')")
      */
     private $planet_image;
 
@@ -129,30 +128,26 @@ class Planet
     private $last_actualisation;
 
     /**
-     * @var UraniumMine
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Buildings\UraniumMine")
-     * @ORM\JoinColumn(name="uranium_mine", referencedColumnName="id")
+     * @var int
+     * @ORM\Column(name="uranium_mine", type="integer")
      */
     private $uranium_mine;
 
     /**
-     * @var Buildings\FerrumMine
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Buildings\FerrumMine")
-     * @ORM\JoinColumn(name="ferrum_mine", referencedColumnName="id")
+     * @var int
+     * @ORM\Column(name="ferrum_mine", type="integer")
      */
     private $ferrum_mine;
 
     /**
-     * @var HeliumMine
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Buildings\HeliumMine")
-     * @ORM\JoinColumn(name="helium_mine", referencedColumnName="id")
+     * @var int
+     * @ORM\Column(name="helium_mine", type="integer")
      */
     private $helium_mine;
 
     /**
-     * @var SiliconMine
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Buildings\SiliconMine")
-     * @ORM\JoinColumn(name="silicon_mine", referencedColumnName="id")
+     * @var int
+     * @ORM\Column(name="silicon_mine", type="integer")
      */
     private $silicon_mine;
 
@@ -241,7 +236,9 @@ class Planet
      */
     public function getHappinessLevel() : HappinessDirectory
     {
-        return $this->happiness_level;
+        $happinessDirectory = new HappinessDirectory();
+        $happinessDirectory->prepareEntityByStrategy($this->happiness_level);
+        return $happinessDirectory;
     }
 
     /**
@@ -249,7 +246,7 @@ class Planet
      */
     public function setHappinessLevel(HappinessDirectory $happiness_level)
     {
-        $this->happiness_level = $happiness_level;
+        $this->happiness_level = $happiness_level->getConstantRepresentation();
     }
 
     /**
@@ -257,7 +254,9 @@ class Planet
      */
     public function getPlanetImage() : PlanetImagesDirectory
     {
-        return $this->planet_image;
+        $planetImagesDirectory = new PlanetImagesDirectory($this->getPlanetClimate());
+        $planetImagesDirectory->prepareEntityByStrategy($this->planet_image);
+        return $planetImagesDirectory;
     }
 
     /**
@@ -265,7 +264,7 @@ class Planet
      */
     public function setPlanetImage(PlanetImagesDirectory $planet_image)
     {
-        $this->planet_image = $planet_image;
+        $this->planet_image = $planet_image->getConstantRepresentation();
     }
 
     /**
@@ -305,7 +304,9 @@ class Planet
      */
     public function getPlanetClimate() : ClimateDirectory
     {
-        return $this->planet_climate;
+        $climateDirectory = new ClimateDirectory();
+        $climateDirectory->prepareEntityByStrategy($this->planet_climate);
+        return $climateDirectory;
     }
 
     /**
@@ -313,7 +314,7 @@ class Planet
      */
     public function setPlanetClimate(ClimateDirectory $planet_climate)
     {
-        $this->planet_climate = $planet_climate;
+        $this->planet_climate = $planet_climate->getConstantRepresentation();
     }
 
     /**
@@ -413,67 +414,75 @@ class Planet
     }
 
     /**
-     * @return UraniumMine
+     * @return MinesInterface
      */
-    public function getUraniumMine() : UraniumMine
+    public function getUraniumMine() : MinesInterface
     {
-        return $this->uranium_mine;
+        $uraniumMine = new UraniumMine();
+        $uraniumMine->setBuildingLevel($this->uranium_mine);
+        return $uraniumMine;
     }
 
     /**
-     * @param UraniumMine $uranium_mine
+     * @param BuildingInterface $uranium_mine
      */
-    public function setUraniumMine(UraniumMine $uranium_mine)
+    public function setUraniumMine(BuildingInterface $uranium_mine)
     {
-        $this->uranium_mine = $uranium_mine;
+        $this->uranium_mine = $uranium_mine->getBuildingLevel();
     }
 
     /**
-     * @return FerrumMine
+     * @return MinesInterface
      */
-    public function getFerrumMine() : FerrumMine
+    public function getFerrumMine() : MinesInterface
     {
-        return $this->ferrum_mine;
+        $ferrumMine = new FerrumMine();
+        $ferrumMine->setBuildingLevel($this->ferrum_mine);
+        return $ferrumMine;
     }
 
     /**
-     * @param FerrumMine $ferrum_mine
+     * @param BuildingInterface $ferrum_mine
      */
-    public function setFerrumMine(FerrumMine $ferrum_mine)
+    public function setFerrumMine(BuildingInterface $ferrum_mine)
     {
-        $this->ferrum_mine = $ferrum_mine;
+        $this->ferrum_mine = $ferrum_mine->getBuildingLevel();
     }
 
     /**
-     * @return HeliumMine
+     * @return MinesInterface
      */
-    public function getHeliumMine() : HeliumMine
+    public function getHeliumMine() : MinesInterface
     {
-        return $this->helium_mine;
+        $heliumMine = new HeliumMine();
+        $heliumMine->setBuildingLevel($this->helium_mine);
+        return $heliumMine;
     }
 
     /**
-     * @param HeliumMine $helium_mine
+     * @param BuildingInterface $helium_mine
      */
-    public function setHeliumMine(HeliumMine $helium_mine)
+    public function setHeliumMine(BuildingInterface $helium_mine)
     {
-        $this->helium_mine = $helium_mine;
+        $this->helium_mine = $helium_mine->getBuildingLevel();
     }
 
     /**
-     * @return SiliconMine
+     * @return MinesInterface
      */
-    public function getSiliconMine() : SiliconMine
+    public function getSiliconMine() : MinesInterface
     {
-        return $this->silicon_mine;
+        $siliconMine = new SiliconMine();
+        $siliconMine->setBuildingLevel($this->silicon_mine);
+        return $siliconMine;
     }
 
     /**
-     * @param SiliconMine $silicon_mine
+     * @param BuildingInterface $silicon_mine
      */
-    public function setSiliconMine(SiliconMine $silicon_mine)
+    public function setSiliconMine(BuildingInterface $silicon_mine)
     {
-        $this->silicon_mine = $silicon_mine;
+        $this->silicon_mine = $silicon_mine->getBuildingLevel();
     }
 
 }
