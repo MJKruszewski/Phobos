@@ -8,11 +8,8 @@
 
 namespace AppBundle\Controller;
 
-//use AppBundle\Entity\Directories\ClimateDirectory;
-//use AppBundle\Entity\Directories\HappinessDirectory;
 use AppBundle\Entity\Planet;
 use AppBundle\Entity\Races;
-use AppBundle\Entity\Repository\PlanetImagesDirectoryRepository;
 use AppBundle\Entity\Repository\PlanetRepository;
 use AppBundle\Entity\Repository\RacesRepository;
 use AppBundle\Entity\User;
@@ -21,6 +18,10 @@ use AppBundle\Library\Utilities\Date;
 use AppBundle\Library\Utilities\Formatters\Numbers;
 use AppBundle\Library\Utilities\Helpers\ControllerAbstract;
 use Symfony\Component\HttpFoundation\Request;
+use /** @noinspection PhpUnusedAliasInspection */
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use /** @noinspection PhpUnusedAliasInspection */
+    Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class PlanetController extends ControllerAbstract implements ActualisationInterface
 {

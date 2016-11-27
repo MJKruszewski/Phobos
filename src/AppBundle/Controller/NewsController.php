@@ -12,6 +12,10 @@ use AppBundle\Entity\Repository\NewsRepository;
 use AppBundle\Entity\Repository\ProjectProgressRepository;
 use AppBundle\Library\Utilities\Helpers\ControllerAbstract;
 use Symfony\Component\HttpFoundation\Request;
+use /** @noinspection PhpUnusedAliasInspection */
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use /** @noinspection PhpUnusedAliasInspection */
+    Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class NewsController extends ControllerAbstract
 {

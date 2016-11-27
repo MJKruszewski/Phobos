@@ -9,6 +9,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Library\Utilities\Helpers\ControllerAbstract;
+use /** @noinspection PhpUnusedAliasInspection */
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use /** @noinspection PhpUnusedAliasInspection */
+    Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MenuController extends ControllerAbstract
 {

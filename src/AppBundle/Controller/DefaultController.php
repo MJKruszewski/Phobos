@@ -5,6 +5,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Repository\PlanetRepository;
 use AppBundle\Library\Utilities\Helpers\ControllerAbstract;
 use Symfony\Component\HttpFoundation\Request;
+use /** @noinspection PhpUnusedAliasInspection */
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use /** @noinspection PhpUnusedAliasInspection */
+    Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends ControllerAbstract implements ActualisationInterface
 {
