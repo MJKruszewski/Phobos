@@ -30,7 +30,7 @@ class User extends BaseUser
      * @var int
      * @ORM\Column(name="credits", type="bigint", length=18)
      */
-    private $credits;
+    private $credits = 0;
 
     /**
      * @param int $int
