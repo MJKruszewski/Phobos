@@ -10,8 +10,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Repository\NewsRepository;
 use AppBundle\Entity\Repository\ProjectProgressRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Library\Utilities\Helpers\ControllerAbstract;
 use Symfony\Component\HttpFoundation\Request;
 

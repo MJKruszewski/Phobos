@@ -8,8 +8,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Directories\ClimateDirectory;
-use AppBundle\Entity\Directories\HappinessDirectory;
+//use AppBundle\Entity\Directories\ClimateDirectory;
+//use AppBundle\Entity\Directories\HappinessDirectory;
 use AppBundle\Entity\Planet;
 use AppBundle\Entity\Races;
 use AppBundle\Entity\Repository\PlanetImagesDirectoryRepository;
@@ -26,6 +26,8 @@ class PlanetController extends ControllerAbstract implements ActualisationInterf
 {
     /**
      * @Route("/app/planet/createplanet", name="createPlanetForNewUser")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function createPlanetForNewUserAction(Request $request)
     {
