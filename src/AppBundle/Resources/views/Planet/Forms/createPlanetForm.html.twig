@@ -11,7 +11,7 @@
     <label for="race">Rasa dominująca: </label>
     <select id="race" name="race" class="form-control">
         {% for race in races %}
-            <option value="{{ race.id }}">{{ race.name }}</option>
+            <option value="{{ race.id }}">{{ ('planet_races.' ~ race.name)|trans }}</option>
         {% endfor %}
     </select>
 

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+        {{ parent() }}
+        <div><br/></div>
+
+        <div class="blur" xmlns="http://www.w3.org/1999/html"></div>
+
+        <div class="col-lg-1 col-md-1"></div>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 mainBody">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBodyContentBox2">
+                <h2>
+
+                </h2>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mainBodyContentBox">
+                {% block planet_content %}
+                    {{ render(controller('AppBundle:Planet:overview')) }}
+                {% endblock %}
+            </div>
+
+            <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+
+            {{ render(controller('AppBundle:Menu:sidePlanetMenu')) }}
+
+        </div>
+        <div class="col-lg-1 col-md-1"></div>
+
+    {% endblock %}
