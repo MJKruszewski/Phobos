@@ -15,7 +15,6 @@ use AppBundle\Entity\User;
 use AppBundle\Library\Utilities\Date;
 use AppBundle\Library\Utilities\Resources\Locator\Factory;
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
-use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -57,7 +56,7 @@ class ActualisationListener
             $userPlanets = $this->getPlanetRepository()->findAllToArrayOfObjectsByOwnerId($this->getUser()->getId());
 
             try {
-                $this->getConnection()->beginTransaction();
+                $entityManager = $this->getDoctrine()->getManager();
                 /**
                  * @var Planet $userPlanet
                  */
@@ -65,20 +64,19 @@ class ActualisationListener
 
                     $dateDiff = Date::countDateMinutesDiff($userPlanet->getLastActualisation(), $dateNow);
                     if ($dateDiff > 0) {
-
                         $userPlanet->setLastActualisation($dateNow);
                         $userPlanet->setUranium(Factory::uraniumResource($this->getUser(), $userPlanet, $dateDiff)->calculateResource());
                         $userPlanet->setHelium(Factory::heliumResource($this->getUser(), $userPlanet, $dateDiff)->calculateResource());
                         $userPlanet->setFerrum(Factory::ferrumResource($this->getUser(), $userPlanet, $dateDiff)->calculateResource());
                         $userPlanet->setSilicon(Factory::siliconResource($this->getUser(), $userPlanet, $dateDiff)->calculateResource());
+//                        $this->getUser()->setCredits(Factory::creditsResource($this->getUser(), $userPlanet, $dateDiff)->calculateResource());
 
-                        $this->getDoctrine()->getManager()->persist($userPlanet);
-                        $this->getDoctrine()->getManager()->flush();
-                        $this->getConnection()->commit();
+                        $entityManager->persist($userPlanet);
                     }
+                    $entityManager->flush();
                 }
             } catch (\Exception $e) {
-                $this->getConnection()->rollback();
+
             }
 
         }
@@ -114,14 +112,6 @@ class ActualisationListener
     private function getDoctrine() : Doctrine
     {
         return $this->doctrine;
-    }
-
-    /**
-     * @return Connection
-     */
-    private function getConnection() : Connection
-    {
-        return $this->getDoctrine()->getConnection();
     }
 
 
