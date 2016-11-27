@@ -72,6 +72,13 @@ class PlanetRepository extends AbstractRepository
         $select->setParameter('is_capital', true);
         $select->setMaxResults(1);
 
-        return $select->getQuery()->getResult()[0];
+        if (isset($select->getQuery()->getResult()[0])) {
+            $planet = $select->getQuery()->getResult()[0];
+        } else {
+            $planet = new Planet();
+            $planet->setId(0);
+        }
+
+        return $planet;
     }
 }

@@ -22,7 +22,7 @@ abstract class AbstractRepository extends EntityRepository
     /**
      * @return string
      */
-    protected final function getTableName() : string
+    protected function getTableName() : string
     {
         return self::BUNDLE_NAME . ":" . $this->getClassMetadata()->getTableName();
     }
