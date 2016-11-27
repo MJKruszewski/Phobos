@@ -14,8 +14,8 @@ class Helium extends ResourceAbstract
 
     public function calculateResource() : int
     {
-        $baseValue = $this->getPlanet()->getHeliumMine()->getBaseValue() / 60;
-        $happniesFactor = $this->getPlanet()->getHappinessLevel()->getLevel() * 0.25;
+        $baseValue = $this->getPlanet()->getHeliumMine()->getBaseMiningValue() / 60;
+        $happniesFactor = $this->getPlanet()->getHappinessLevel()->getConstantRepresentation() * 0.25;
 
         /**
          * @todo implement factors like race technology etc etc

@@ -14,8 +14,8 @@ class Ferrum extends ResourceAbstract
 
     public function calculateResource() : int
     {
-        $baseValue = $this->getPlanet()->getFerrumMine()->getBaseValue() / 60;
-        $happniesFactor = $this->getPlanet()->getHappinessLevel()->getLevel() * 0.25;
+        $baseValue = $this->getPlanet()->getFerrumMine()->getBaseMiningValue() / 60;
+        $happniesFactor = $this->getPlanet()->getHappinessLevel()->getConstantRepresentation() * 0.25;
 
         /**
          * @todo implement factors like race technology etc etc

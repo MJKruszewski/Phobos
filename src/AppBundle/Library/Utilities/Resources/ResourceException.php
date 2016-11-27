@@ -3,17 +3,13 @@
  * Created by PhpStorm.
  * User: maciej
  * Date: 23.07.16
- * Time: 22:04
+ * Time: 22:02
  */
 
 namespace AppBundle\Library\Utilities\Resources;
 
 
-interface ResourceInterface
+class ResourceException extends \Exception
 {
-    /**
-     * @return int
-     */
-    public function calculateResource() : int;
 
 }

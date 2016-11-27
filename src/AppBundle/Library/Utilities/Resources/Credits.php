@@ -3,17 +3,17 @@
  * Created by PhpStorm.
  * User: maciej
  * Date: 23.07.16
- * Time: 22:04
+ * Time: 21:56
  */
 
 namespace AppBundle\Library\Utilities\Resources;
 
 
-interface ResourceInterface
+class Credits extends ResourceAbstract
 {
-    /**
-     * @return int
-     */
-    public function calculateResource() : int;
 
+    public function calculateResource()
+    {
+
+    }
 }
