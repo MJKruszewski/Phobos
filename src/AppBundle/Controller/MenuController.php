@@ -9,9 +9,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Library\Utilities\Helpers\ControllerAbstract;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class MenuController extends ControllerAbstract
 {
@@ -27,9 +24,9 @@ class MenuController extends ControllerAbstract
         if ($isAuthorized) {
             $menuPositions = [
                 ['name' => 'Home', 'clear_path' => 'app', 'path' => '/app'],
-                ['name' => 'Planet', 'clear_path' => 'register', 'path' => '/register'],
-                ['name' => 'Messages', 'clear_path' => 'register', 'path' => '/register'],
-                ['name' => 'Smfn', 'clear_path' => 'register', 'path' => '/register'],
+                ['name' => 'Planet', 'clear_path' => 'planet', 'path' => '/planet'],
+                ['name' => 'Messages', 'clear_path' => 'register', 'path' => '/'],
+                ['name' => 'Smfn', 'clear_path' => 'register', 'path' => '/'],
             ];
         } else {
             $menuPositions = [
@@ -38,6 +35,34 @@ class MenuController extends ControllerAbstract
         }
 
         return $this->render('@AppBundle/Resources/views/Menu/TopMenu.html.twig', [
+            'menu_positions' => $menuPositions,
+            'is_authenticated' => $isAuthorized,
+        ]);
+    }
+
+    /**
+     * @Route("/sidePlanetMenu", name="sidePlanetMenu")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo move positions of menu to database or consts
+     */
+    public function sidePlanetMenuAction()
+    {
+        $isAuthorized = $this->getAuthorizationChecker()->isGranted('IS_AUTHENTICATED_REMEMBERED');
+
+        if ($isAuthorized) {
+            $menuPositions = [
+                ['name' => 'Overview', 'clear_path' => 'planet', 'path' => '/planet'],
+                ['name' => 'Buildings', 'clear_path' => 'buildings', 'path' => '/planet/buildings'],
+                ['name' => 'Hangar', 'clear_path' => 'hangar', 'path' => '/planet/hangar'],
+                ['name' => 'Barracks', 'clear_path' => 'barracks', 'path' => '/planet/barracks'],
+            ];
+        } else {
+            $menuPositions = [
+                ['name' => 'Register', 'clear_path' => 'register', 'path' => '/register'],
+            ];
+        }
+
+        return $this->render('@AppBundle/Resources/views/Menu/SidePlanetMenu.html.twig', [
             'menu_positions' => $menuPositions,
             'is_authenticated' => $isAuthorized,
         ]);
