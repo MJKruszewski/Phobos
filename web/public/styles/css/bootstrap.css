@@ -6786,7 +6786,7 @@ button.close {
   right: -20px;
   bottom: -60px;
   backface-visibility: hidden;
-  background: url(/public/imgs/2784414-illustration_missionscreen_fleetaction-fs8.png) scroll;
+  background: url(/public/imgs/2784414-illustration_missionscreen_fleetaction-n.jpg) scroll;
   background-size: cover;
   z-index: -999;
 }
@@ -6833,4 +6833,8 @@ button.close {
 
 .roundBorders {
   border-radius: 20px;
+}
+
+.blank_row {
+  height: 10px !important; /* Overwrite any previous rules */
 }
