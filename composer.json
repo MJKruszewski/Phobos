@@ -17,7 +17,7 @@
     }
   },
   "require": {
-    "php": ">=5.5.9",
+    "php": ">=7.0",
     "symfony/symfony": "3.1.*",
     "doctrine/orm": "^2.5",
     "doctrine/doctrine-bundle": "^1.6",
@@ -29,15 +29,17 @@
     "sensio/distribution-bundle": "^5.0",
     "sensio/framework-extra-bundle": "^3.0.2",
     "incenteev/composer-parameter-handler": "^2.0",
-    "phpspec/phpspec": "~3.0",
-    "phpunit/phpunit": ">=5.4",
     "symfony/assetic-bundle": "^2.8",
-    "friendsofsymfony/user-bundle": "dev-master",
-    "satooshi/php-coveralls": "^1.0"
+    "friendsofsymfony/user-bundle": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
-    "symfony/phpunit-bridge": "^3.0"
+    "symfony/phpunit-bridge": "^3.0",
+    "satooshi/php-coveralls": "^1.0",
+    "sebastian/phpcpd": "^2.0",
+    "squizlabs/php_codesniffer": "*",
+    "phpspec/phpspec": "^2.5",
+    "phpunit/phpunit": ">=5.4"
   },
   "scripts": {
     "post-install-cmd": [
